@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EA Demand Management - Intake Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Enterprise Architecture</h1>
+            <h2>Demand Management Intake Portal</h2>
+            <p class="subtitle">Single point of entry for all demand - We'll help you find the right form</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Welcome Section -->
+            <section id="welcome-section" class="card">
+                <h3>Welcome to the Demand Intake Portal</h3>
+                <p>Answer a few quick questions to find the right intake form for your investment request.</p>
+                <p class="help-text">
+                    <strong>Not sure what you need?</strong> No problem! We'll guide you through the process.
+                </p>
+                <button class="btn btn-primary btn-large" onclick="startIntake()">Start Your Intake Request</button>
+                <div class="help-links">
+                    <a href="#" onclick="showHelp(); return false;">Need Help?</a> |
+                    <a href="#" onclick="showResources(); return false;">Resources & Examples</a> |
+                    <a href="mailto:ea-intake@company.com">Contact EA Team</a>
+                </div>
+            </section>
+
+            <!-- Classification Questions -->
+            <section id="classification-section" class="card" style="display: none;">
+                <h3>Let's Find the Right Form for You</h3>
+                <p class="help-text">Answer these questions to determine the appropriate intake form</p>
+
+                <form id="classification-form">
+                    <!-- Question 1: Request Type -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            1. What type of request is this?
+                            <span class="tooltip" data-tooltip="Break-fix and incidents are handled through a different process">ⓘ</span>
+                        </label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="requestType" value="incident" onchange="handleRequestTypeChange()">
+                                <span>Break-Fix or Incident (Route to Incident Management)</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="requestType" value="enhancement" onchange="handleRequestTypeChange()">
+                                <span>Enhancement to existing system/process (expected &lt;$50k)</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="requestType" value="project" onchange="handleRequestTypeChange()">
+                                <span>Project or Initiative ($50k+ expected)</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="requestType" value="unsure" onchange="handleRequestTypeChange()">
+                                <span>Not sure - Need consultation with EA team</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question 2: Investment Size (shown for enhancement or project) -->
+                    <div id="investment-question" class="form-group" style="display: none;">
+                        <label class="form-label">
+                            2. What is the estimated total investment?
+                            <span class="tooltip" data-tooltip="Include all costs: software, hardware, labor, consulting, ongoing O&M">ⓘ</span>
+                        </label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="investment" value="under50k" onchange="handleInvestmentChange()">
+                                <span>Less than $50,000</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="investment" value="50k-500k" onchange="handleInvestmentChange()">
+                                <span>$50,000 - $500,000</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="investment" value="500k-2m" onchange="handleInvestmentChange()">
+                                <span>$500,000 - $2,000,000</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="investment" value="over2m" onchange="handleInvestmentChange()">
+                                <span>Over $2,000,000</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="investment" value="unsure" onchange="handleInvestmentChange()">
+                                <span>Unsure - Need help estimating</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question 3: Complexity (shown for enhancement or project) -->
+                    <div id="complexity-question" class="form-group" style="display: none;">
+                        <label class="form-label">
+                            3. What is the estimated project complexity?
+                            <span class="tooltip" data-tooltip="Click for detailed complexity assessment guide">ⓘ</span>
+                        </label>
+                        <div class="complexity-guide">
+                            <button type="button" class="btn btn-secondary btn-small" onclick="toggleComplexityHelp()">
+                                Show Complexity Guide
+                            </button>
+                        </div>
+
+                        <div id="complexity-help" class="help-box" style="display: none;">
+                            <h4>Complexity Assessment Guide</h4>
+                            <div class="complexity-grid">
+                                <div class="complexity-item">
+                                    <strong>Low Complexity:</strong>
+                                    <ul>
+                                        <li>Single system/application</li>
+                                        <li>Minimal integration (1-2 systems)</li>
+                                        <li>Proven technology</li>
+                                        <li>Single department</li>
+                                        <li>Well-understood solution</li>
+                                    </ul>
+                                </div>
+                                <div class="complexity-item">
+                                    <strong>Medium Complexity:</strong>
+                                    <ul>
+                                        <li>Multiple systems (2-4)</li>
+                                        <li>Moderate integration</li>
+                                        <li>Cross-functional (2-3 depts)</li>
+                                        <li>Some new technology</li>
+                                        <li>Moderate change required</li>
+                                    </ul>
+                                </div>
+                                <div class="complexity-item">
+                                    <strong>High Complexity:</strong>
+                                    <ul>
+                                        <li>Enterprise-wide systems</li>
+                                        <li>Extensive integration (5+ systems)</li>
+                                        <li>New technology platform</li>
+                                        <li>Transformational change</li>
+                                        <li>High technical risk</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="complexity" value="low" onchange="handleComplexityChange()">
+                                <span><strong>Low</strong> - Single system, minimal integration, proven technology</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="complexity" value="medium" onchange="handleComplexityChange()">
+                                <span><strong>Medium</strong> - Multiple systems (2-4), moderate integration, cross-functional</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="complexity" value="high" onchange="handleComplexityChange()">
+                                <span><strong>High</strong> - Enterprise-wide, extensive integration (5+ systems), transformational</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="complexity" value="unsure" onchange="handleComplexityChange()">
+                                <span>Unsure - Request assistance</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Tier Recommendation Display -->
+                    <div id="tier-recommendation" class="recommendation-box" style="display: none;">
+                        <h4>Recommended Intake Form</h4>
+                        <div id="recommendation-content"></div>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary" id="proceed-button" onclick="proceedToForm()">
+                                Proceed to Form
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="resetClassification()">
+                                Start Over
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Tier Classification Matrix (Reference) -->
+            <section id="matrix-section" class="card" style="display: none;">
+                <h3>Project Tier Classification Matrix</h3>
+                <div class="table-responsive">
+                    <table class="classification-matrix">
+                        <thead>
+                            <tr>
+                                <th>Investment Size</th>
+                                <th>Low Complexity</th>
+                                <th>Medium Complexity</th>
+                                <th>High Complexity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>&lt;$50k</strong></td>
+                                <td class="tier-enhancement">Enhancement</td>
+                                <td class="tier-enhancement">Enhancement</td>
+                                <td class="tier-enhancement">Enhancement*</td>
+                            </tr>
+                            <tr>
+                                <td><strong>$50k - $500k</strong></td>
+                                <td class="tier-3">Tier 3</td>
+                                <td class="tier-3">Tier 3</td>
+                                <td class="tier-2">Tier 2</td>
+                            </tr>
+                            <tr>
+                                <td><strong>$500k - $2M</strong></td>
+                                <td class="tier-3">Tier 3</td>
+                                <td class="tier-2">Tier 2</td>
+                                <td class="tier-1">Tier 1</td>
+                            </tr>
+                            <tr>
+                                <td><strong>&gt;$2M</strong></td>
+                                <td class="tier-2">Tier 2</td>
+                                <td class="tier-1">Tier 1</td>
+                                <td class="tier-1">Tier 1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="help-text">*High complexity enhancements may be re-tiered to Tier 2 during screening</p>
+                <button class="btn btn-secondary" onclick="hideMatrix()">Close</button>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Need Help?</h4>
+                    <p>Email: <a href="mailto:ea-intake@company.com">ea-intake@company.com</a></p>
+                    <p>Phone: (XXX) XXX-XXXX</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#" onclick="showMatrix(); return false;">View Classification Matrix</a></li>
+                        <li><a href="#">Intake FAQs</a></li>
+                        <li><a href="#">Example Submissions</a></li>
+                        <li><a href="#">Video Tutorials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Documentation</h4>
+                    <ul>
+                        <li><a href="#">EA Demand Management Program</a></li>
+                        <li><a href="#">Value Framework Guide</a></li>
+                        <li><a href="#">Complexity Assessment Tool</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Enterprise Architecture | Version 1.0</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script>
+        // Tier determination logic
+        const tierMatrix = {
+            'under50k': {
+                'low': 'enhancement',
+                'medium': 'enhancement',
+                'high': 'enhancement'
+            },
+            '50k-500k': {
+                'low': 'tier3',
+                'medium': 'tier3',
+                'high': 'tier2'
+            },
+            '500k-2m': {
+                'low': 'tier3',
+                'medium': 'tier2',
+                'high': 'tier1'
+            },
+            'over2m': {
+                'low': 'tier2',
+                'medium': 'tier1',
+                'high': 'tier1'
+            }
+        };
+
+        const tierInfo = {
+            'enhancement': {
+                name: 'Enhancement Intake Form',
+                time: '5 minutes',
+                cycle: '3 business days',
+                description: 'Quick form for investments under $50k with low to medium complexity.',
+                file: 'enhancement-form.html'
+            },
+            'tier3': {
+                name: 'Tier 3 Project Intake Form',
+                time: '5-10 minutes',
+                cycle: '7-12 days',
+                description: 'Lightweight intake followed by EA-facilitated interview. The EA team will help develop your business case.',
+                file: 'tier3-form.html'
+            },
+            'tier2': {
+                name: 'Tier 2 Project Intake Form',
+                time: '10-15 minutes',
+                cycle: '14-21 days',
+                description: 'Strategic investment requiring executive sponsorship and formal business case.',
+                file: 'tier2-form.html'
+            },
+            'tier1': {
+                name: 'Tier 1 Program Brief',
+                time: '2-4 weeks',
+                cycle: '6-12 weeks',
+                description: 'Transformational program requiring comprehensive planning with Strategic Planning Office support.',
+                file: 'tier1-form.html'
+            }
+        };
+
+        let selectedTier = null;
+
+        function startIntake() {
+            document.getElementById('welcome-section').style.display = 'none';
+            document.getElementById('classification-section').style.display = 'block';
+        }
+
+        function handleRequestTypeChange() {
+            const requestType = document.querySelector('input[name="requestType"]:checked').value;
+            const investmentQ = document.getElementById('investment-question');
+            const complexityQ = document.getElementById('complexity-question');
+            const recommendation = document.getElementById('tier-recommendation');
+
+            // Hide downstream questions and recommendation
+            investmentQ.style.display = 'none';
+            complexityQ.style.display = 'none';
+            recommendation.style.display = 'none';
+
+            // Clear selections
+            document.querySelectorAll('input[name="investment"]').forEach(el => el.checked = false);
+            document.querySelectorAll('input[name="complexity"]').forEach(el => el.checked = false);
+
+            if (requestType === 'incident') {
+                showIncidentRedirect();
+            } else if (requestType === 'unsure') {
+                showConsultationMessage();
+            } else {
+                investmentQ.style.display = 'block';
+            }
+        }
+
+        function handleInvestmentChange() {
+            const investment = document.querySelector('input[name="investment"]:checked').value;
+            const complexityQ = document.getElementById('complexity-question');
+            const recommendation = document.getElementById('tier-recommendation');
+
+            // Hide downstream questions
+            complexityQ.style.display = 'none';
+            recommendation.style.display = 'none';
+
+            // Clear complexity selection
+            document.querySelectorAll('input[name="complexity"]').forEach(el => el.checked = false);
+
+            if (investment === 'unsure') {
+                showEstimationHelp();
+            } else {
+                complexityQ.style.display = 'block';
+            }
+        }
+
+        function handleComplexityChange() {
+            const complexity = document.querySelector('input[name="complexity"]:checked').value;
+            const investment = document.querySelector('input[name="investment"]:checked')?.value;
+
+            if (complexity === 'unsure') {
+                showComplexityHelp();
+                return;
+            }
+
+            if (investment && complexity) {
+                determineTier(investment, complexity);
+            }
+        }
+
+        function determineTier(investment, complexity) {
+            selectedTier = tierMatrix[investment][complexity];
+            const info = tierInfo[selectedTier];
+
+            const recommendationContent = document.getElementById('recommendation-content');
+            recommendationContent.innerHTML = `
+                <div class="tier-badge tier-badge-${selectedTier}">${info.name}</div>
+                <p class="tier-description">${info.description}</p>
+                <div class="tier-details">
+                    <div class="tier-detail-item">
+                        <strong>Completion Time:</strong> ${info.time}
+                    </div>
+                    <div class="tier-detail-item">
+                        <strong>Target Cycle Time:</strong> ${info.cycle}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('tier-recommendation').style.display = 'block';
+
+            // Scroll to recommendation
+            document.getElementById('tier-recommendation').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function proceedToForm() {
+            if (selectedTier) {
+                const info = tierInfo[selectedTier];
+                window.location.href = info.file;
+            }
+        }
+
+        function resetClassification() {
+            document.getElementById('classification-form').reset();
+            document.getElementById('investment-question').style.display = 'none';
+            document.getElementById('complexity-question').style.display = 'none';
+            document.getElementById('tier-recommendation').style.display = 'none';
+            document.getElementById('complexity-help').style.display = 'none';
+            selectedTier = null;
+        }
+
+        function toggleComplexityHelp() {
+            const helpBox = document.getElementById('complexity-help');
+            helpBox.style.display = helpBox.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function showIncidentRedirect() {
+            const recommendation = document.getElementById('tier-recommendation');
+            const content = document.getElementById('recommendation-content');
+            content.innerHTML = `
+                <div class="alert alert-info">
+                    <h4>Incident Management Process</h4>
+                    <p>Break-fix and incident requests should be submitted through the Incident Management system.</p>
+                    <p><strong>Please visit:</strong> <a href="#">ServiceNow Incident Portal</a></p>
+                    <p>Or contact the Help Desk at: (XXX) XXX-XXXX</p>
+                </div>
+            `;
+            recommendation.style.display = 'block';
+            document.getElementById('proceed-button').style.display = 'none';
+        }
+
+        function showConsultationMessage() {
+            const recommendation = document.getElementById('tier-recommendation');
+            const content = document.getElementById('recommendation-content');
+            content.innerHTML = `
+                <div class="alert alert-info">
+                    <h4>EA Intake Consultation</h4>
+                    <p>No problem! The EA team offers free 30-minute consultations to help you:</p>
+                    <ul>
+                        <li>Understand your investment tier</li>
+                        <li>Estimate costs and complexity</li>
+                        <li>Identify value categories</li>
+                        <li>Prepare your intake submission</li>
+                    </ul>
+                    <p><strong>Contact us to schedule:</strong></p>
+                    <p>Email: <a href="mailto:ea-intake@company.com">ea-intake@company.com</a></p>
+                    <p>Phone: (XXX) XXX-XXXX</p>
+                </div>
+            `;
+            recommendation.style.display = 'block';
+            document.getElementById('proceed-button').style.display = 'none';
+        }
+
+        function showEstimationHelp() {
+            const recommendation = document.getElementById('tier-recommendation');
+            const content = document.getElementById('recommendation-content');
+            content.innerHTML = `
+                <div class="alert alert-warning">
+                    <h4>Need Help Estimating Costs?</h4>
+                    <p>That's okay! Here are some resources to help you estimate:</p>
+                    <ul>
+                        <li><a href="#">Cost Estimation Guide</a> - Templates and examples</li>
+                        <li><a href="#">Vendor Quote Template</a> - What to request from vendors</li>
+                        <li><a href="#">ROI Calculator</a> - Quick estimation tool</li>
+                    </ul>
+                    <p><strong>Or schedule a consultation:</strong> <a href="mailto:ea-intake@company.com">ea-intake@company.com</a></p>
+                </div>
+            `;
+            recommendation.style.display = 'block';
+            document.getElementById('proceed-button').style.display = 'none';
+        }
+
+        function showComplexityHelp() {
+            const recommendation = document.getElementById('tier-recommendation');
+            const content = document.getElementById('recommendation-content');
+            content.innerHTML = `
+                <div class="alert alert-warning">
+                    <h4>Need Help Assessing Complexity?</h4>
+                    <p>Use our interactive complexity assessment tool:</p>
+                    <ul>
+                        <li><a href="#">Complexity Assessment Quiz</a> - 10 questions to determine complexity</li>
+                        <li><a href="#">Complexity Examples</a> - See examples by complexity level</li>
+                    </ul>
+                    <p><strong>When in doubt, select a higher complexity.</strong> The EA team will validate during screening and may adjust the tier if needed.</p>
+                </div>
+            `;
+            recommendation.style.display = 'block';
+            document.getElementById('proceed-button').style.display = 'none';
+        }
+
+        function showMatrix() {
+            document.getElementById('matrix-section').style.display = 'block';
+            document.getElementById('matrix-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function hideMatrix() {
+            document.getElementById('matrix-section').style.display = 'none';
+        }
+
+        function showHelp() {
+            alert('Help resources will be displayed here. This could link to a help modal or page.');
+        }
+
+        function showResources() {
+            alert('Resource library will be displayed here. This could link to a resources page.');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EA Demand Management - Evaluation Engine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .section h2 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-number {
+            background: #667eea;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px;
+            background: white;
+            border-radius: 6px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .checkbox-item:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin-top: 3px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            flex: 1;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .checkbox-item label strong {
+            display: block;
+            color: #1e3c72;
+            margin-bottom: 4px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: white;
+            border-radius: 6px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .radio-item:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .radio-item input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .radio-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .results {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .result-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .result-card h3 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .tier-badge {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .tier-enhancement {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .tier-3 {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .tier-2 {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .tier-1 {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .score-bar {
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .score-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .risk-level {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+
+        .risk-low {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .risk-medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .risk-high {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .complexity-indicator {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+
+        .complexity-low {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .complexity-medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .complexity-high {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+
+        .matrix-table th,
+        .matrix-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .matrix-table th {
+            background: #1e3c72;
+            color: white;
+            font-weight: 600;
+        }
+
+        .matrix-table .highlight {
+            background: #fffacd;
+            font-weight: bold;
+            border: 3px solid #667eea;
+        }
+
+        .recommendations {
+            background: #e7f3ff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #0066cc;
+            margin: 20px 0;
+        }
+
+        .recommendations h4 {
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+
+        .recommendations ul {
+            margin-left: 20px;
+        }
+
+        .recommendations li {
+            margin: 8px 0;
+        }
+
+        .value-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .value-item {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 2px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .value-item.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .value-item h4 {
+            color: #1e3c72;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .value-item .check {
+            font-size: 1.5em;
+            color: #28a745;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .btn {
+                display: none;
+            }
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .info-box strong {
+            color: #1976d2;
+        }
+
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            padding: 0 20px;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .progress-step::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e0e0e0;
+            z-index: -1;
+        }
+
+        .progress-step:first-child::before {
+            left: 50%;
+        }
+
+        .progress-step:last-child::before {
+            right: 50%;
+        }
+
+        .progress-step .step-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .progress-step.active .step-circle {
+            background: #667eea;
+            color: white;
+        }
+
+        .progress-step.completed .step-circle {
+            background: #28a745;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>EA Demand Management Evaluation Engine</h1>
+            <p>Value, Risk & Complexity Assessment Tool</p>
+        </div>
+
+        <div class="content">
+            <form id="evaluationForm">
+                <!-- Section 1: Project Overview -->
+                <div class="section">
+                    <h2>
+                        <span class="section-number">1</span>
+                        Project Overview
+                    </h2>
+
+                    <div class="form-group">
+                        <label for="projectName">Project/Initiative Name *</label>
+                        <input type="text" id="projectName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="businessOwner">Business Owner *</label>
+                        <input type="text" id="businessOwner" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Brief Description *</label>
+                        <textarea id="description" required placeholder="Describe the project, problem it solves, or opportunity it enables..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="totalCost">Total Project Cost (USD) *</label>
+                        <input type="number" id="totalCost" min="0" step="1000" required placeholder="Enter total project cost">
+                    </div>
+                </div>
+
+                <!-- Section 2: Complexity Assessment -->
+                <div class="section">
+                    <h2>
+                        <span class="section-number">2</span>
+                        Complexity Assessment
+                    </h2>
+
+                    <div class="info-box">
+                        <strong>Instructions:</strong> Answer the following questions to determine project complexity. Complexity is assessed across multiple dimensions.
+                    </div>
+
+                    <div class="form-group">
+                        <label>Project Scope *</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="scopeSingle" name="scope" value="1" required>
+                                <label for="scopeSingle">Single system or contained business process</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="scopeMultiple" name="scope" value="2">
+                                <label for="scopeMultiple">Multiple systems or cross-functional processes</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="scopeEnterprise" name="scope" value="3">
+                                <label for="scopeEnterprise">Enterprise-wide or transformational</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Integration Requirements *</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="integrationMinimal" name="integration" value="1" required>
+                                <label for="integrationMinimal">Minimal to no integration</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="integrationModerate" name="integration" value="2">
+                                <label for="integrationModerate">Moderate (2-4 systems)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="integrationExtensive" name="integration" value="3">
+                                <label for="integrationExtensive">Extensive (5+ systems)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Technology Maturity *</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="techMature" name="technology" value="1" required>
+                                <label for="techMature">Mature, proven technology</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="techMixed" name="technology" value="2">
+                                <label for="techMixed">Mix of proven and newer technologies</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="techNew" name="technology" value="3">
+                                <label for="techNew">Significant new technology or platform</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Organizational Impact *</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="impactSingle" name="orgImpact" value="1" required>
+                                <label for="impactSingle">Single department/business unit</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="impactMultiple" name="orgImpact" value="2">
+                                <label for="impactMultiple">Multiple departments/business units</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="impactEnterprise" name="orgImpact" value="3">
+                                <label for="impactEnterprise">Enterprise-wide or customer-facing</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Change Management Scope *</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="changeLimited" name="changeScope" value="1" required>
+                                <label for="changeLimited">Limited process changes</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="changeModerate" name="changeScope" value="2">
+                                <label for="changeModerate">Moderate process redesign</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="changeSubstantial" name="changeScope" value="3">
+                                <label for="changeSubstantial">Substantial organizational transformation</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Architectural Impact *</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="archMinimal" name="architecture" value="1" required>
+                                <label for="archMinimal">Minimal; fits existing patterns</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="archNoteworthy" name="architecture" value="2">
+                                <label for="archNoteworthy">Noteworthy; may introduce new patterns</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="archMajor" name="architecture" value="3">
+                                <label for="archMajor">Major; new platforms or paradigm shifts</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Value Assessment -->
+                <div class="section">
+                    <h2>
+                        <span class="section-number">3</span>
+                        Value Assessment
+                    </h2>
+
+                    <div class="info-box">
+                        <strong>Instructions:</strong> Select all value categories that apply and provide brief quantification.
+                    </div>
+
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="valueOperational" name="valueCategories">
+                            <label for="valueOperational">
+                                <strong>Operational Value</strong>
+                                Reliability improvement, efficiency gains, safety enhancement, asset performance
+                            </label>
+                        </div>
+                        <div class="form-group" style="margin-left: 30px; display: none;" id="operationalDetails">
+                            <textarea placeholder="Describe operational value (e.g., 'Saves 20 hours/week of manual effort')"></textarea>
+                        </div>
+
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="valueFinancial" name="valueCategories">
+                            <label for="valueFinancial">
+                                <strong>Financial Value</strong>
+                                Cost avoidance, cost reduction, revenue protection, revenue growth
+                            </label>
+                        </div>
+                        <div class="form-group" style="margin-left: 30px; display: none;" id="financialDetails">
+                            <textarea placeholder="Describe financial value (e.g., 'Avoids $50k annual maintenance cost')"></textarea>
+                        </div>
+
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="valueCustomer" name="valueCategories">
+                            <label for="valueCustomer">
+                                <strong>Customer Value</strong>
+                                Experience improvement, service enhancement, reliability, affordability
+                            </label>
+                        </div>
+                        <div class="form-group" style="margin-left: 30px; display: none;" id="customerDetails">
+                            <textarea placeholder="Describe customer value (e.g., 'Improves NPS by 10 points')"></textarea>
+                        </div>
+
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="valueRegulatory" name="valueCategories">
+                            <label for="valueRegulatory">
+                                <strong>Regulatory & Compliance Value</strong>
+                                Compliance achievement, risk reduction, rate case support
+                            </label>
+                        </div>
+                        <div class="form-group" style="margin-left: 30px; display: none;" id="regulatoryDetails">
+                            <textarea placeholder="Describe regulatory value (e.g., 'Achieves NERC CIP compliance')"></textarea>
+                        </div>
+
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="valueStrategic" name="valueCategories">
+                            <label for="valueStrategic">
+                                <strong>Strategic & Capability Value</strong>
+                                Strategic alignment, capability building, competitive positioning, option value
+                            </label>
+                        </div>
+                        <div class="form-group" style="margin-left: 30px; display: none;" id="strategicDetails">
+                            <textarea placeholder="Describe strategic value (e.g., 'Enables future digital initiatives')"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: Risk Assessment -->
+                <div class="section">
+                    <h2>
+                        <span class="section-number">4</span>
+                        Risk Assessment
+                    </h2>
+
+                    <div class="info-box">
+                        <strong>Instructions:</strong> Identify applicable risk factors for this project.
+                    </div>
+
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="riskTechnical" name="riskFactors">
+                            <label for="riskTechnical">
+                                <strong>Technical Risk</strong>
+                                Unproven technology, complex integration, technical debt
+                            </label>
+                        </div>
+
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="riskOrganizational" name="riskFactors">
+                            <label for="riskOrganizational">
+                                <strong>Organizational Risk</strong>
+                                Change resistance, skill gaps, stakeholder alignment
+                            </label>
+                        </div>
+
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="riskFinancial" name="riskFactors">
+                            <label for="riskFinancial">
+                                <strong>Financial Risk</strong>
+                                Budget uncertainty, cost overrun potential, ROI uncertainty
+                            </label>
+                        </div>
+
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="riskSchedule" name="riskFactors">
+                            <label for="riskSchedule">
+                                <strong>Schedule Risk</strong>
+                                Aggressive timeline, dependency complexity, resource constraints
+                            </label>
+                        </div>
+
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="riskRegulatory" name="riskFactors">
+                            <label for="riskRegulatory">
+                                <strong>Regulatory Risk</strong>
+                                Compliance uncertainty, regulatory changes, approval dependencies
+                            </label>
+                        </div>
+
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="riskSecurity" name="riskFactors">
+                            <label for="riskSecurity">
+                                <strong>Security/Privacy Risk</strong>
+                                Data exposure, cybersecurity threats, customer data handling
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="riskMitigation">Key Risk Mitigation Strategies</label>
+                        <textarea id="riskMitigation" placeholder="Describe how major risks will be mitigated..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Section 5: Zero-Based Prioritization -->
+                <div class="section">
+                    <h2>
+                        <span class="section-number">5</span>
+                        Zero-Based Prioritization
+                    </h2>
+
+                    <div class="info-box">
+                        <strong>Zero-Based Approach:</strong> Evaluate this initiative as if starting from scratch, justifying its value against doing nothing or investing resources elsewhere. Every initiative must earn its place in the portfolio.
+                    </div>
+
+                    <div class="form-group">
+                        <label>Strategic Alignment *</label>
+                        <div class="info-box" style="font-size: 0.9em; margin-bottom: 10px;">
+                            How well does this initiative align with enterprise strategic objectives?
+                        </div>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="strategyDirect" name="strategicAlignment" value="5" required>
+                                <label for="strategyDirect">Direct Enabler (Enables 3+ strategic objectives)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="strategyStrong" name="strategicAlignment" value="4">
+                                <label for="strategyStrong">Strong Support (Supports 2 strategic objectives)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="strategyModerate" name="strategicAlignment" value="3">
+                                <label for="strategyModerate">Moderate Support (Supports 1 strategic objective)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="strategyWeak" name="strategicAlignment" value="2">
+                                <label for="strategyWeak">Tangential (Indirect support)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="strategyNone" name="strategicAlignment" value="1">
+                                <label for="strategyNone">No Clear Alignment</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Urgency / Timing Criticality *</label>
+                        <div class="info-box" style="font-size: 0.9em; margin-bottom: 10px;">
+                            What happens if we delay this initiative by 6-12 months?
+                        </div>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="urgencyCritical" name="urgency" value="5" required>
+                                <label for="urgencyCritical">Critical (Regulatory deadline, major revenue/cost impact)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="urgencyHigh" name="urgency" value="4">
+                                <label for="urgencyHigh">High (Competitive disadvantage, significant opportunity loss)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="urgencyModerate" name="urgency" value="3">
+                                <label for="urgencyModerate">Moderate (Some opportunity loss, but manageable)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="urgencyLow" name="urgency" value="2">
+                                <label for="urgencyLow">Low (Minimal impact from delay)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="urgencyFlexible" name="urgency" value="1">
+                                <label for="urgencyFlexible">Flexible (Can be deferred without consequence)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Dependency / Enablement Factor *</label>
+                        <div class="info-box" style="font-size: 0.9em; margin-bottom: 10px;">
+                            Does this initiative enable or block other valuable initiatives?
+                        </div>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="dependencyFoundation" name="dependency" value="5" required>
+                                <label for="dependencyFoundation">Foundation (Enables 5+ future initiatives)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="dependencyStrong" name="dependency" value="4">
+                                <label for="dependencyStrong">Strong Enabler (Enables 3-4 initiatives)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="dependencyModerate" name="dependency" value="3">
+                                <label for="dependencyModerate">Moderate Enabler (Enables 1-2 initiatives)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="dependencyIndependent" name="dependency" value="2">
+                                <label for="dependencyIndependent">Independent (No major dependencies)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="dependencyBlocked" name="dependency" value="1">
+                                <label for="dependencyBlocked">Dependent (Blocked by other initiatives)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Delivery Confidence *</label>
+                        <div class="info-box" style="font-size: 0.9em; margin-bottom: 10px;">
+                            How confident are we that this can be delivered successfully?
+                        </div>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="confidenceHigh" name="deliveryConfidence" value="5" required>
+                                <label for="confidenceHigh">High (Proven approach, available skills, clear scope)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="confidenceGood" name="deliveryConfidence" value="4">
+                                <label for="confidenceGood">Good (Some unknowns, but manageable)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="confidenceModerate" name="deliveryConfidence" value="3">
+                                <label for="confidenceModerate">Moderate (Significant unknowns, some risk)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="confidenceLow" name="deliveryConfidence" value="2">
+                                <label for="confidenceLow">Low (Major uncertainties, high risk)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="confidenceVeryLow" name="deliveryConfidence" value="1">
+                                <label for="confidenceVeryLow">Very Low (Unproven, high failure risk)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alternativeConsidered">Alternative Approaches Considered</label>
+                        <textarea id="alternativeConsidered" placeholder="What alternatives were considered? Why is this approach preferred over doing nothing or other options?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="costOfInaction">Cost of Inaction (Do Nothing)</label>
+                        <textarea id="costOfInaction" placeholder="What are the consequences if we don't do this initiative? Quantify the cost of maintaining the status quo..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="resourceAvailability">Resource Availability Assessment</label>
+                        <textarea id="resourceAvailability" placeholder="Are the necessary resources (people, budget, technology) available or committed? What are the resource constraints?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Zero-Based Justification Question *</label>
+                        <div class="info-box" style="font-size: 0.9em; margin-bottom: 10px;">
+                            If you had to defend this initiative to a skeptical executive who could redirect these resources anywhere in the enterprise, how would you justify it?
+                        </div>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="justifyMission" name="justification" value="5" required>
+                                <label for="justifyMission">Mission Critical (Cannot operate effectively without it)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="justifyStrong" name="justification" value="4">
+                                <label for="justifyStrong">Compelling (Strong ROI, clear competitive advantage)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="justifyGood" name="justification" value="3">
+                                <label for="justifyGood">Good (Solid business case, positive value)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="justifyWeak" name="justification" value="2">
+                                <label for="justifyWeak">Weak (Marginal value, difficult to defend)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="justifyPoor" name="justification" value="1">
+                                <label for="justifyPoor">Poor (Hard to justify vs. alternatives)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div style="text-align: center; margin-top: 30px;">
+                    <button type="submit" class="btn btn-primary">Evaluate Project</button>
+                    <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset</button>
+                </div>
+            </form>
+
+            <!-- Results Section -->
+            <div id="results" class="results">
+                <div class="section">
+                    <h2>Evaluation Results</h2>
+
+                    <div class="result-card">
+                        <h3>Investment Tier Classification</h3>
+                        <div id="tierResult"></div>
+                        <div id="tierMatrix"></div>
+                    </div>
+
+                    <div class="result-card">
+                        <h3>Complexity Assessment</h3>
+                        <div id="complexityResult"></div>
+                        <div id="complexityBreakdown"></div>
+                    </div>
+
+                    <div class="result-card">
+                        <h3>Value Assessment</h3>
+                        <div id="valueResult"></div>
+                    </div>
+
+                    <div class="result-card">
+                        <h3>Risk Assessment</h3>
+                        <div id="riskResult"></div>
+                    </div>
+
+                    <div class="result-card">
+                        <h3>Zero-Based Prioritization Score</h3>
+                        <div id="prioritizationResult"></div>
+                    </div>
+
+                    <div class="result-card">
+                        <h3>Recommendations</h3>
+                        <div id="recommendationsResult"></div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button class="btn btn-primary" onclick="window.print()">Print Results</button>
+                        <button class="btn btn-secondary" onclick="exportResults()">Export to JSON</button>
+                        <button class="btn btn-secondary" onclick="scrollToTop()">Back to Form</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle value detail textareas
+        document.querySelectorAll('input[name="valueCategories"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const detailId = this.id + 'Details'.replace('value', '').toLowerCase();
+                const detailDiv = document.getElementById(detailId);
+                if (detailDiv) {
+                    detailDiv.style.display = this.checked ? 'block' : 'none';
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('evaluationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            evaluateProject();
+        });
+
+        function evaluateProject() {
+            // Get form values
+            const projectName = document.getElementById('projectName').value;
+            const totalCost = parseFloat(document.getElementById('totalCost').value);
+
+            // Calculate complexity score
+            const complexityScore = calculateComplexity();
+            const complexityLevel = getComplexityLevel(complexityScore);
+
+            // Determine tier
+            const tier = determineTier(totalCost, complexityLevel);
+
+            // Calculate value score
+            const valueScore = calculateValueScore();
+
+            // Calculate risk score
+            const riskScore = calculateRiskScore();
+
+            // Calculate prioritization score
+            const prioritizationData = calculatePrioritization(totalCost, valueScore);
+
+            // Display results
+            displayResults(projectName, totalCost, complexityLevel, complexityScore, tier, valueScore, riskScore, prioritizationData);
+
+            // Scroll to results
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function calculateComplexity() {
+            const factors = ['scope', 'integration', 'technology', 'orgImpact', 'changeScope', 'architecture'];
+            let total = 0;
+            let count = 0;
+
+            factors.forEach(factor => {
+                const selected = document.querySelector(`input[name="${factor}"]:checked`);
+                if (selected) {
+                    total += parseInt(selected.value);
+                    count++;
+                }
+            });
+
+            return count > 0 ? total / count : 0;
+        }
+
+        function getComplexityLevel(score) {
+            if (score <= 1.5) return 'Low';
+            if (score <= 2.5) return 'Medium';
+            return 'High';
+        }
+
+        function determineTier(cost, complexity) {
+            // Based on the matrix from the document
+            if (cost < 50000) {
+                if (complexity === 'High') {
+                    return { tier: 'Enhancement*', note: 'May be escalated to Tier 3 at DAR/EA discretion due to high complexity' };
+                }
+                return { tier: 'Enhancement', note: '' };
+            } else if (cost >= 50000 && cost < 500000) {
+                if (complexity === 'Low') return { tier: 'Tier 3', note: '' };
+                if (complexity === 'Medium') return { tier: 'Tier 3', note: '' };
+                if (complexity === 'High') return { tier: 'Tier 2', note: '' };
+            } else if (cost >= 500000 && cost < 2000000) {
+                if (complexity === 'Low') return { tier: 'Tier 3', note: '' };
+                if (complexity === 'Medium') return { tier: 'Tier 2', note: '' };
+                if (complexity === 'High') return { tier: 'Tier 1', note: '' };
+            } else { // >= 2M
+                if (complexity === 'Low') return { tier: 'Tier 2', note: '' };
+                if (complexity === 'Medium') return { tier: 'Tier 1', note: '' };
+                if (complexity === 'High') return { tier: 'Tier 1', note: '' };
+            }
+            return { tier: 'Unknown', note: '' };
+        }
+
+        function calculateValueScore() {
+            const checkboxes = document.querySelectorAll('input[name="valueCategories"]:checked');
+            return checkboxes.length;
+        }
+
+        function calculateRiskScore() {
+            const checkboxes = document.querySelectorAll('input[name="riskFactors"]:checked');
+            return checkboxes.length;
+        }
+
+        function calculatePrioritization(totalCost, valueScore) {
+            // Get all prioritization factors
+            const strategicAlignment = parseInt(document.querySelector('input[name="strategicAlignment"]:checked')?.value || 0);
+            const urgency = parseInt(document.querySelector('input[name="urgency"]:checked')?.value || 0);
+            const dependency = parseInt(document.querySelector('input[name="dependency"]:checked')?.value || 0);
+            const deliveryConfidence = parseInt(document.querySelector('input[name="deliveryConfidence"]:checked')?.value || 0);
+            const justification = parseInt(document.querySelector('input[name="justification"]:checked')?.value || 0);
+
+            // Calculate weighted prioritization score (out of 100)
+            // Weights: Strategic (25%), Urgency (20%), Dependency (15%), Confidence (15%), Justification (25%)
+            const rawScore = (strategicAlignment * 0.25) + (urgency * 0.20) + (dependency * 0.15) +
+                           (deliveryConfidence * 0.15) + (justification * 0.25);
+            const priorityScore = (rawScore / 5) * 100; // Normalize to 0-100
+
+            // Calculate Value/Cost Efficiency
+            const costInThousands = totalCost / 1000;
+            const valueCostRatio = valueScore > 0 && costInThousands > 0 ?
+                                   (valueScore / (costInThousands / 50)) : 0; // Normalized
+
+            // Determine priority level
+            let priorityLevel = 'Low';
+            let priorityColor = '#f8d7da';
+            if (priorityScore >= 80) {
+                priorityLevel = 'Critical';
+                priorityColor = '#721c24';
+            } else if (priorityScore >= 65) {
+                priorityLevel = 'High';
+                priorityColor = '#856404';
+            } else if (priorityScore >= 50) {
+                priorityLevel = 'Medium';
+                priorityColor = '#004085';
+            } else if (priorityScore >= 35) {
+                priorityLevel = 'Low-Medium';
+                priorityColor = '#cce5ff';
+            }
+
+            return {
+                strategicAlignment,
+                urgency,
+                dependency,
+                deliveryConfidence,
+                justification,
+                priorityScore: priorityScore.toFixed(1),
+                priorityLevel,
+                priorityColor,
+                valueCostRatio: valueCostRatio.toFixed(2)
+            };
+        }
+
+        function displayResults(projectName, totalCost, complexityLevel, complexityScore, tierInfo, valueScore, riskScore, prioritizationData) {
+            // Tier Result
+            const tierClass = getTierClass(tierInfo.tier);
+            document.getElementById('tierResult').innerHTML = `
+                <p><strong>Project:</strong> ${projectName}</p>
+                <p><strong>Total Cost:</strong> $${totalCost.toLocaleString()}</p>
+                <p><strong>Complexity:</strong> ${complexityLevel}</p>
+                <div class="tier-badge ${tierClass}">${tierInfo.tier}</div>
+                ${tierInfo.note ? `<p style="margin-top: 10px;"><em>${tierInfo.note}</em></p>` : ''}
+            `;
+
+            // Tier Matrix
+            document.getElementById('tierMatrix').innerHTML = generateTierMatrix(totalCost, complexityLevel);
+
+            // Complexity Result
+            const complexityClass = getComplexityClass(complexityLevel);
+            const complexityPercentage = ((complexityScore - 1) / 2 * 100).toFixed(0);
+            document.getElementById('complexityResult').innerHTML = `
+                <div class="complexity-indicator ${complexityClass}">${complexityLevel} Complexity</div>
+                <div class="score-bar">
+                    <div class="score-fill" style="width: ${complexityPercentage}%">${complexityScore.toFixed(2)}/3.0</div>
+                </div>
+            `;
+
+            // Complexity Breakdown
+            document.getElementById('complexityBreakdown').innerHTML = generateComplexityBreakdown();
+
+            // Value Result
+            const valueCategories = getSelectedValueCategories();
+            document.getElementById('valueResult').innerHTML = `
+                <p><strong>Value Categories Selected:</strong> ${valueScore} of 5</p>
+                <div class="value-summary">
+                    ${generateValueSummary(valueCategories)}
+                </div>
+                ${generateValueRequirements(tierInfo.tier, valueScore)}
+            `;
+
+            // Risk Result
+            const riskLevel = getRiskLevel(riskScore);
+            const riskClass = getRiskClass(riskLevel);
+            const riskFactors = getSelectedRiskFactors();
+            document.getElementById('riskResult').innerHTML = `
+                <div class="risk-level ${riskClass}">${riskLevel} Risk</div>
+                <p><strong>Risk Factors Identified:</strong> ${riskScore} of 6</p>
+                <ul>
+                    ${riskFactors.map(r => `<li>${r}</li>`).join('')}
+                </ul>
+            `;
+
+            // Prioritization Result
+            document.getElementById('prioritizationResult').innerHTML = generatePrioritizationDisplay(prioritizationData, totalCost, valueScore);
+
+            // Recommendations
+            document.getElementById('recommendationsResult').innerHTML = generateRecommendations(tierInfo.tier, valueScore, riskScore, complexityLevel, prioritizationData);
+        }
+
+        function getTierClass(tier) {
+            if (tier.includes('Enhancement')) return 'tier-enhancement';
+            if (tier.includes('Tier 3')) return 'tier-3';
+            if (tier.includes('Tier 2')) return 'tier-2';
+            if (tier.includes('Tier 1')) return 'tier-1';
+            return '';
+        }
+
+        function getComplexityClass(level) {
+            if (level === 'Low') return 'complexity-low';
+            if (level === 'Medium') return 'complexity-medium';
+            return 'complexity-high';
+        }
+
+        function getRiskClass(level) {
+            if (level === 'Low') return 'risk-low';
+            if (level === 'Medium') return 'risk-medium';
+            return 'risk-high';
+        }
+
+        function getRiskLevel(score) {
+            if (score <= 2) return 'Low';
+            if (score <= 4) return 'Medium';
+            return 'High';
+        }
+
+        function generateTierMatrix(cost, complexity) {
+            const getCostRange = (cost) => {
+                if (cost < 50000) return 3;      // <$50k is row 3 in the matrix
+                if (cost < 500000) return 2;     // $50k-$500k is row 2
+                if (cost < 2000000) return 1;    // $500k-$2M is row 1
+                return 0;                         // Over $2M is row 0
+            };
+
+            const getComplexityIndex = (complexity) => {
+                if (complexity === 'Low') return 0;
+                if (complexity === 'Medium') return 1;
+                return 2;
+            };
+
+            const costRange = getCostRange(cost);
+            const complexityIndex = getComplexityIndex(complexity);
+
+            const matrix = [
+                ['Tier 2', 'Tier 1', 'Tier 1'],
+                ['Tier 3', 'Tier 2', 'Tier 1'],
+                ['Tier 3', 'Tier 3', 'Tier 2'],
+                ['Enhancement', 'Enhancement', 'Enhancement*']
+            ];
+
+            const costLabels = ['Over $2M', '$500k-$2M', '$50k-$500k', '<$50k'];
+            const complexityLabels = ['Low Complexity', 'Medium Complexity', 'High Complexity'];
+
+            let html = '<table class="matrix-table"><tr><th>Cost / Complexity</th>';
+            complexityLabels.forEach(label => {
+                html += `<th>${label}</th>`;
+            });
+            html += '</tr>';
+
+            costLabels.forEach((costLabel, i) => {
+                html += `<tr><th>${costLabel}</th>`;
+                matrix[i].forEach((cell, j) => {
+                    const isHighlight = (i === costRange && j === complexityIndex);
+                    html += `<td class="${isHighlight ? 'highlight' : ''}">${cell}</td>`;
+                });
+                html += '</tr>';
+            });
+
+            html += '</table>';
+            return html;
+        }
+
+        function generateComplexityBreakdown() {
+            const factors = [
+                { name: 'scope', label: 'Scope' },
+                { name: 'integration', label: 'Integration' },
+                { name: 'technology', label: 'Technology' },
+                { name: 'orgImpact', label: 'Organizational Impact' },
+                { name: 'changeScope', label: 'Change Management' },
+                { name: 'architecture', label: 'Architecture' }
+            ];
+
+            let html = '<div style="margin-top: 15px;">';
+            factors.forEach(factor => {
+                const selected = document.querySelector(`input[name="${factor.name}"]:checked`);
+                if (selected) {
+                    const value = parseInt(selected.value);
+                    const label = selected.nextElementSibling.textContent;
+                    const percentage = ((value - 1) / 2 * 100);
+                    html += `
+                        <div style="margin-bottom: 10px;">
+                            <strong>${factor.label}:</strong> ${label}
+                            <div class="score-bar" style="height: 20px;">
+                                <div class="score-fill" style="width: ${percentage}%; font-size: 0.8em;">${value}/3</div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+            html += '</div>';
+            return html;
+        }
+
+        function getSelectedValueCategories() {
+            const categories = ['Operational', 'Financial', 'Customer', 'Regulatory', 'Strategic'];
+            const selected = [];
+            document.querySelectorAll('input[name="valueCategories"]:checked').forEach(checkbox => {
+                const label = checkbox.nextElementSibling.querySelector('strong').textContent;
+                selected.push(label);
+            });
+            return selected;
+        }
+
+        function generateValueSummary(categories) {
+            const allCategories = ['Operational Value', 'Financial Value', 'Customer Value', 'Regulatory & Compliance Value', 'Strategic & Capability Value'];
+            return allCategories.map(cat => {
+                const isSelected = categories.some(c => cat.includes(c.replace(' Value', '')));
+                return `
+                    <div class="value-item ${isSelected ? 'selected' : ''}">
+                        <h4>${cat}</h4>
+                        ${isSelected ? '<span class="check">✓</span>' : '<span style="color: #ccc;">○</span>'}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function generateValueRequirements(tier, valueScore) {
+            let requirement = '';
+            let met = false;
+
+            if (tier.includes('Enhancement')) {
+                requirement = 'Enhancement Tier requires demonstrating value in at least ONE category';
+                met = valueScore >= 1;
+            } else if (tier.includes('Tier 3')) {
+                requirement = 'Tier 3 requires demonstrating value in TWO OR MORE categories';
+                met = valueScore >= 2;
+            } else if (tier.includes('Tier 2')) {
+                requirement = 'Tier 2 requires demonstrating value in MULTIPLE categories (minimum 3)';
+                met = valueScore >= 3;
+            } else if (tier.includes('Tier 1')) {
+                requirement = 'Tier 1 requires demonstrating value across ALL FIVE categories';
+                met = valueScore >= 5;
+            }
+
+            const statusColor = met ? '#28a745' : '#dc3545';
+            const statusText = met ? '✓ Requirement Met' : '✗ Requirement Not Met';
+
+            return `
+                <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                    <p><strong>Value Requirement:</strong> ${requirement}</p>
+                    <p style="color: ${statusColor}; font-weight: bold; margin-top: 10px;">${statusText}</p>
+                </div>
+            `;
+        }
+
+        function getSelectedRiskFactors() {
+            const factors = [];
+            const checkboxes = document.querySelectorAll('input[name="riskFactors"]:checked');
+            checkboxes.forEach(checkbox => {
+                factors.push(checkbox.nextElementSibling.querySelector('strong').textContent);
+            });
+            return factors.length > 0 ? factors : ['No significant risk factors identified'];
+        }
+
+        function generatePrioritizationDisplay(prioritizationData, totalCost, valueScore) {
+            const factorLabels = {
+                strategicAlignment: 'Strategic Alignment',
+                urgency: 'Urgency / Timing',
+                dependency: 'Dependency / Enablement',
+                deliveryConfidence: 'Delivery Confidence',
+                justification: 'Zero-Based Justification'
+            };
+
+            let html = `
+                <div style="background: ${prioritizationData.priorityColor}20; padding: 20px; border-radius: 8px; border-left: 4px solid ${prioritizationData.priorityColor};">
+                    <h4 style="color: ${prioritizationData.priorityColor}; margin-bottom: 15px;">
+                        Priority Level: ${prioritizationData.priorityLevel}
+                    </h4>
+                    <div class="score-bar" style="margin: 15px 0;">
+                        <div class="score-fill" style="width: ${prioritizationData.priorityScore}%; background: linear-gradient(90deg, ${prioritizationData.priorityColor} 0%, ${prioritizationData.priorityColor}aa 100%);">
+                            ${prioritizationData.priorityScore}/100
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <h4 style="margin-bottom: 10px;">Prioritization Factor Breakdown:</h4>
+            `;
+
+            // Display each factor
+            Object.keys(factorLabels).forEach(factor => {
+                const value = prioritizationData[factor];
+                const percentage = (value / 5) * 100;
+                let color = '#dc3545';
+                if (value >= 4) color = '#28a745';
+                else if (value >= 3) color = '#ffc107';
+
+                html += `
+                    <div style="margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <strong>${factorLabels[factor]}:</strong>
+                            <span>${value}/5</span>
+                        </div>
+                        <div class="score-bar" style="height: 20px;">
+                            <div class="score-fill" style="width: ${percentage}%; background: ${color}; font-size: 0.8em;"></div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                </div>
+
+                <div style="margin-top: 20px; padding: 15px; background: #e3f2fd; border-radius: 6px;">
+                    <h4 style="color: #1976d2; margin-bottom: 10px;">Value/Cost Efficiency</h4>
+                    <p><strong>Total Cost:</strong> $${totalCost.toLocaleString()}</p>
+                    <p><strong>Value Categories:</strong> ${valueScore} of 5</p>
+                    <p><strong>Efficiency Ratio:</strong> ${prioritizationData.valueCostRatio}</p>
+                    <p style="font-size: 0.9em; color: #666; margin-top: 10px;">
+                        <em>Higher ratios indicate better value per dollar invested. Consider this alongside strategic alignment and urgency.</em>
+                    </p>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <h4 style="margin-bottom: 10px;">Priority Decision Guidance:</h4>
+                    ${getPriorityGuidance(prioritizationData.priorityScore, prioritizationData)}
+                </div>
+            `;
+
+            return html;
+        }
+
+        function getPriorityGuidance(score, data) {
+            if (score >= 80) {
+                return `
+                    <div style="padding: 15px; background: #f8d7da; border-left: 4px solid #721c24; border-radius: 4px;">
+                        <strong style="color: #721c24;">Critical Priority</strong>
+                        <p style="margin-top: 8px;">This initiative demonstrates compelling strategic value and urgency. Recommend immediate resource allocation and executive sponsorship. Fast-track through governance if possible.</p>
+                    </div>
+                `;
+            } else if (score >= 65) {
+                return `
+                    <div style="padding: 15px; background: #fff3cd; border-left: 4px solid #856404; border-radius: 4px;">
+                        <strong style="color: #856404;">High Priority</strong>
+                        <p style="margin-top: 8px;">Strong business case with clear strategic alignment. Recommend prioritizing in current planning cycle. Ensure adequate resources and stakeholder commitment.</p>
+                    </div>
+                `;
+            } else if (score >= 50) {
+                return `
+                    <div style="padding: 15px; background: #cce5ff; border-left: 4px solid #004085; border-radius: 4px;">
+                        <strong style="color: #004085;">Medium Priority</strong>
+                        <p style="margin-top: 8px;">Solid value proposition. Consider for inclusion in portfolio based on resource availability and strategic fit. May benefit from re-scoping or phased approach to improve priority score.</p>
+                    </div>
+                `;
+            } else if (score >= 35) {
+                return `
+                    <div style="padding: 15px; background: #d4edda; border-left: 4px solid #155724; border-radius: 4px;">
+                        <strong style="color: #155724;">Low-Medium Priority</strong>
+                        <p style="margin-top: 8px;">Consider deferral or re-evaluation. Assess whether strategic alignment can be strengthened or if alternatives exist with higher value. May be appropriate for future planning cycle.</p>
+                    </div>
+                `;
+            } else {
+                return `
+                    <div style="padding: 15px; background: #e2e3e5; border-left: 4px solid #6c757d; border-radius: 4px;">
+                        <strong style="color: #6c757d;">Low Priority</strong>
+                        <p style="margin-top: 8px;">Recommend deferral or rejection. Zero-based approach suggests resources would deliver greater value elsewhere. Consider whether this initiative can be re-imagined or if the need can be addressed through alternative means.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function generateRecommendations(tier, valueScore, riskScore, complexityLevel, prioritizationData) {
+            const recommendations = [];
+
+            // Prioritization-based recommendations
+            if (prioritizationData) {
+                if (prioritizationData.priorityScore >= 80) {
+                    recommendations.push('<strong>Portfolio Priority:</strong> Critical - Recommend immediate funding and resource allocation');
+                } else if (prioritizationData.priorityScore >= 65) {
+                    recommendations.push('<strong>Portfolio Priority:</strong> High - Include in current planning cycle with committed resources');
+                } else if (prioritizationData.priorityScore >= 50) {
+                    recommendations.push('<strong>Portfolio Priority:</strong> Medium - Evaluate against other medium-priority initiatives for resource allocation');
+                } else if (prioritizationData.priorityScore < 35) {
+                    recommendations.push('<strong>Portfolio Priority:</strong> Low - Consider deferral or alternative approaches that deliver higher value');
+                }
+
+                // Strategic alignment recommendations
+                if (prioritizationData.strategicAlignment <= 2) {
+                    recommendations.push('<strong>Strategic Concern:</strong> Weak strategic alignment. Clarify how this supports enterprise objectives before proceeding.');
+                }
+
+                // Delivery confidence recommendations
+                if (prioritizationData.deliveryConfidence <= 2) {
+                    recommendations.push('<strong>Delivery Risk:</strong> Low confidence in successful delivery. Consider proof-of-concept or pilot before full investment.');
+                }
+            }
+
+            // Tier-specific recommendations
+            if (tier.includes('Enhancement')) {
+                recommendations.push('Fast-track approval through Product Team Lead (3-day cycle target)');
+                recommendations.push('Ensure DAR review if any architectural triggers are present');
+                recommendations.push('Document value realization for quarterly sampling');
+            } else if (tier.includes('Tier 3')) {
+                recommendations.push('Prepare standard business case with ROI calculation (7-12 day cycle)');
+                recommendations.push('Engage EA/DAR for qualification interview');
+                recommendations.push('Present to Technology Subcommittee for approval');
+            } else if (tier.includes('Tier 2')) {
+                recommendations.push('Develop formal business case with architecture review (14-21 day cycle)');
+                recommendations.push('Include sensitivity analysis and strategic value articulation');
+                recommendations.push('Present to Technology Subcommittee and TAC');
+            } else if (tier.includes('Tier 1')) {
+                recommendations.push('Comprehensive business case with multi-year value plan (6-12 week cycle)');
+                recommendations.push('Engage executive sponsors and board-level approval');
+                recommendations.push('Develop scenario modeling and risk-adjusted NPV');
+            }
+
+            // Value-based recommendations
+            if (tier.includes('Tier 3') && valueScore < 2) {
+                recommendations.push('<strong>Action Required:</strong> Add value demonstration in at least one more category to meet Tier 3 requirements');
+            } else if (tier.includes('Tier 2') && valueScore < 3) {
+                recommendations.push('<strong>Action Required:</strong> Add value demonstration in additional categories to meet Tier 2 requirements (need 3 minimum)');
+            } else if (tier.includes('Tier 1') && valueScore < 5) {
+                recommendations.push('<strong>Action Required:</strong> Must demonstrate value across ALL FIVE categories for Tier 1 approval');
+            }
+
+            // Risk-based recommendations
+            if (riskScore >= 4) {
+                recommendations.push('Develop comprehensive risk mitigation plan with executive oversight');
+                recommendations.push('Consider phased approach or pilot to reduce risk');
+            } else if (riskScore >= 2) {
+                recommendations.push('Document mitigation strategies for identified medium/high risks');
+            }
+
+            // Complexity-based recommendations
+            if (complexityLevel === 'High' && parseFloat(document.getElementById('totalCost').value) < 50000) {
+                recommendations.push('Consider EA escalation review due to high complexity despite low cost');
+            }
+
+            return `<div class="recommendations"><ul>${recommendations.map(r => `<li>${r}</li>`).join('')}</ul></div>`;
+        }
+
+        function resetForm() {
+            if (confirm('Are you sure you want to reset the form? All data will be lost.')) {
+                document.getElementById('evaluationForm').reset();
+                document.getElementById('results').style.display = 'none';
+                document.querySelectorAll('[id$="Details"]').forEach(div => {
+                    div.style.display = 'none';
+                });
+                scrollToTop();
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function exportResults() {
+            const totalCost = parseFloat(document.getElementById('totalCost').value);
+            const valueScore = calculateValueScore();
+            const complexityScore = calculateComplexity();
+            const complexityLevel = getComplexityLevel(complexityScore);
+
+            const data = {
+                project: {
+                    name: document.getElementById('projectName').value,
+                    owner: document.getElementById('businessOwner').value,
+                    description: document.getElementById('description').value,
+                    cost: totalCost
+                },
+                complexity: {
+                    score: complexityScore,
+                    level: complexityLevel
+                },
+                value: {
+                    score: valueScore,
+                    categories: getSelectedValueCategories()
+                },
+                risk: {
+                    score: calculateRiskScore(),
+                    level: getRiskLevel(calculateRiskScore()),
+                    factors: getSelectedRiskFactors()
+                },
+                prioritization: calculatePrioritization(totalCost, valueScore),
+                tier: determineTier(totalCost, complexityLevel),
+                timestamp: new Date().toISOString()
+            };
+
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `ea-evaluation-${data.project.name.replace(/\s+/g, '-').toLowerCase()}-${Date.now()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

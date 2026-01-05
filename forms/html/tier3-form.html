@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tier 3 Project Intake Form - EA Demand Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Tier 3 Project Intake Form</h1>
+            <p class="subtitle">Investment: $50k - $2M | Completion Time: ~5-10 minutes | Target Cycle: 7-12 days</p>
+        </header>
+
+        <main class="main-content">
+            <div class="card">
+                <div class="alert alert-info">
+                    <h4>Form Instructions</h4>
+                    <p>This is a <strong>lightweight intake form</strong>. After submission, the EA team will schedule a 30-45 minute interview with you to collaboratively develop the detailed business case.</p>
+                    <p><strong>What you provide:</strong> High-level information to get started</p>
+                    <p><strong>What EA team provides:</strong> Interview facilitation and detailed documentation</p>
+                </div>
+
+                <form id="tier3-form" onsubmit="return submitForm('tier3-form', event)">
+
+                    <!-- Requester Information -->
+                    <div class="section-header">Requester Information</div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="requester-name">
+                            Your Name <span class="required">*</span>
+                        </label>
+                        <input type="text" id="requester-name" name="requesterName" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="requester-title">
+                            Title <span class="required">*</span>
+                        </label>
+                        <input type="text" id="requester-title" name="requesterTitle" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="requester-department">
+                            Department/Business Unit <span class="required">*</span>
+                        </label>
+                        <input type="text" id="requester-department" name="requesterDepartment" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="requester-email">
+                            Email <span class="required">*</span>
+                        </label>
+                        <input type="email" id="requester-email" name="requesterEmail" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="requester-phone">
+                            Phone <span class="required">*</span>
+                        </label>
+                        <input type="tel" id="requester-phone" name="requesterPhone" class="form-input" required>
+                    </div>
+
+                    <!-- Business Sponsor -->
+                    <div class="section-subheader">Business Sponsor</div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="sponsor-name">
+                            Business Sponsor Name <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="The business leader accountable for this project">ⓘ</span>
+                        </label>
+                        <input type="text" id="sponsor-name" name="sponsorName" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="sponsor-title">
+                            Sponsor Title <span class="required">*</span>
+                        </label>
+                        <input type="text" id="sponsor-title" name="sponsorTitle" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="sponsor-department">
+                            Sponsor Department <span class="required">*</span>
+                        </label>
+                        <input type="text" id="sponsor-department" name="sponsorDepartment" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="sponsor-email">
+                            Sponsor Email <span class="required">*</span>
+                        </label>
+                        <input type="email" id="sponsor-email" name="sponsorEmail" class="form-input" required>
+                    </div>
+
+                    <!-- Project Overview -->
+                    <div class="section-header">Section 1: Project Overview</div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="project-title">
+                            Project Title <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Provide a clear, descriptive name">ⓘ</span>
+                        </label>
+                        <input type="text" id="project-title" name="projectTitle" class="form-input" required placeholder="e.g., Field Workforce Mobile Application">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="strategic-objective">
+                            Primary Strategic Objective <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Select the main enterprise strategic objective this project supports">ⓘ</span>
+                        </label>
+                        <select id="strategic-objective" name="strategicObjective" class="form-select" required>
+                            <option value="">-- Select Strategic Objective --</option>
+                            <option value="grid-modernization">Grid Modernization & Reliability</option>
+                            <option value="customer-excellence">Customer Experience Excellence</option>
+                            <option value="operational-efficiency">Operational Efficiency</option>
+                            <option value="regulatory-compliance">Regulatory Compliance</option>
+                            <option value="aes-growth">Advanced Energy Solutions Growth</option>
+                            <option value="workforce-productivity">Workforce Productivity & Safety</option>
+                            <option value="digital-transformation">Digital Transformation</option>
+                            <option value="asset-management">Asset Management Excellence</option>
+                            <option value="other">Other (specify below)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="estimated-investment">
+                            Estimated Total Investment ($k) <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Rough order of magnitude - include all costs">ⓘ</span>
+                        </label>
+                        <input type="number" id="estimated-investment" name="estimatedInvestment" class="form-input form-input-small" required min="50" max="2000" step="10" placeholder="500">
+                        <span class="help-text">Range: $50k - $2,000k for Tier 3</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="complexity">
+                            Estimated Complexity <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Pre-filled from intake classification - EA will validate">ⓘ</span>
+                        </label>
+                        <select id="complexity" name="complexity" class="form-select" required>
+                            <option value="">-- Select Complexity --</option>
+                            <option value="low">Low - Single system, minimal integration, proven technology</option>
+                            <option value="medium">Medium - Multiple systems (2-4), moderate integration, cross-functional</option>
+                        </select>
+                        <span class="help-text">Complexity will be validated during EA screening</span>
+                    </div>
+
+                    <!-- Business Need -->
+                    <div class="section-header">Section 2: Business Need (High-Level)</div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="business-need">
+                            What problem are you solving or opportunity are you enabling? <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Describe in 3-5 sentences the business need">ⓘ</span>
+                        </label>
+                        <textarea id="business-need" name="businessNeed" class="form-textarea" required rows="6" placeholder="Describe the business problem or opportunity..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            Who will benefit? <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Select all that apply">ⓘ</span>
+                        </label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="beneficiary" value="customers" required>
+                                <span>External Customers (residential, commercial, industrial)</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="beneficiary" value="operations">
+                                <span>Operations Teams</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="beneficiary" value="field-workforce">
+                                <span>Field Workforce</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="beneficiary" value="regulatory">
+                                <span>Regulatory Compliance</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="beneficiary" value="internal-teams">
+                                <span>Internal Business Teams</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="beneficiary" value="multiple">
+                                <span>Multiple Stakeholder Groups</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="primary-beneficiary">
+                            Primary Beneficiary <span class="required">*</span>
+                        </label>
+                        <input type="text" id="primary-beneficiary" name="primaryBeneficiary" class="form-input" required placeholder="e.g., Field service technicians">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="consequences">
+                            What happens if we don't do this? <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Describe in 1-2 sentences the consequences of not pursuing this">ⓘ</span>
+                        </label>
+                        <textarea id="consequences" name="consequences" class="form-textarea" required rows="3" placeholder="Describe the risks or missed opportunities..."></textarea>
+                    </div>
+
+                    <!-- Proposed Approach -->
+                    <div class="section-header">Section 3: Proposed Approach (High-Level)</div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="solution-overview">
+                            Solution Overview <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Describe in 2-3 sentences your proposed approach">ⓘ</span>
+                        </label>
+                        <textarea id="solution-overview" name="solutionOverview" class="form-textarea" required rows="4" placeholder="Describe how you propose to address this need..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="primary-systems">
+                            Primary System(s) Involved <span class="required">*</span>
+                        </label>
+                        <input type="text" id="primary-systems" name="primarySystems" class="form-input" required placeholder="e.g., Work Management System, Mobile Platform">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="additional-systems">
+                            Additional Systems/Platforms
+                        </label>
+                        <input type="text" id="additional-systems" name="additionalSystems" class="form-input" placeholder="List any other systems that may be affected">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="new-systems">
+                            New Systems/Technology
+                        </label>
+                        <input type="text" id="new-systems" name="newSystems" class="form-input" placeholder="Any new technology or platforms to be introduced">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="target-start">
+                            Target Start Date <span class="required">*</span>
+                        </label>
+                        <input type="date" id="target-start" name="targetStart" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="target-completion">
+                            Target Completion Date <span class="required">*</span>
+                        </label>
+                        <input type="date" id="target-completion" name="targetCompletion" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="timeline-drivers">
+                            Timeline Drivers (optional)
+                        </label>
+                        <input type="text" id="timeline-drivers" name="timelineDrivers" class="form-input" placeholder="e.g., Regulatory deadline, strategic milestone">
+                    </div>
+
+                    <!-- Expected Value -->
+                    <div class="section-header">Section 4: Expected Value (High-Level)</div>
+
+                    <p class="help-text">Select all value categories you expect this project to deliver and provide brief details. Tier 3 requires demonstrating value in at least 2 categories.</p>
+
+                    <!-- Operational Value -->
+                    <div class="value-category">
+                        <div class="value-category-header">
+                            <input type="checkbox" id="value-operational" name="valueOperational" onchange="toggleValueCategory('value-operational', 'operational-details')">
+                            <label for="value-operational">Operational Value</label>
+                        </div>
+                        <div id="operational-details" class="value-category-details">
+                            <div class="form-group">
+                                <label class="form-label" for="operational-desc">Brief Description</label>
+                                <textarea id="operational-desc" name="operationalDesc" class="form-textarea" rows="2" placeholder="e.g., Reduce outage duration, improve efficiency"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="operational-metrics">Example Metrics</label>
+                                <input type="text" id="operational-metrics" name="operationalMetrics" class="form-input" placeholder="e.g., reduce outage duration by 15%, improve process efficiency by 25%">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Financial Value -->
+                    <div class="value-category">
+                        <div class="value-category-header">
+                            <input type="checkbox" id="value-financial" name="valueFinancial" onchange="toggleValueCategory('value-financial', 'financial-details')">
+                            <label for="value-financial">Financial Value</label>
+                        </div>
+                        <div id="financial-details" class="value-category-details">
+                            <div class="form-group">
+                                <label class="form-label" for="financial-desc">Brief Description</label>
+                                <textarea id="financial-desc" name="financialDesc" class="form-textarea" rows="2" placeholder="Describe the financial benefits"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="financial-estimate">Rough Annual Estimate ($k/year)</label>
+                                <input type="number" id="financial-estimate" name="financialEstimate" class="form-input form-input-small" min="0" step="10" placeholder="150">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Type (select all that apply)</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="financialType" value="cost-avoidance">
+                                        <span>Cost Avoidance</span>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="financialType" value="cost-reduction">
+                                        <span>Cost Reduction</span>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="financialType" value="revenue-generation">
+                                        <span>Revenue Generation</span>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="financialType" value="risk-mitigation">
+                                        <span>Risk Mitigation</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customer Value -->
+                    <div class="value-category">
+                        <div class="value-category-header">
+                            <input type="checkbox" id="value-customer" name="valueCustomer" onchange="toggleValueCategory('value-customer', 'customer-details')">
+                            <label for="value-customer">Customer Value</label>
+                        </div>
+                        <div id="customer-details" class="value-category-details">
+                            <div class="form-group">
+                                <label class="form-label" for="customer-desc">Brief Description</label>
+                                <textarea id="customer-desc" name="customerDesc" class="form-textarea" rows="2" placeholder="e.g., Improve customer satisfaction, reduce complaints"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="customer-impact">Expected Impact</label>
+                                <input type="text" id="customer-impact" name="customerImpact" class="form-input" placeholder="e.g., Affects 100,000 customers, improves NPS by 5 points">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Regulatory/Compliance Value -->
+                    <div class="value-category">
+                        <div class="value-category-header">
+                            <input type="checkbox" id="value-regulatory" name="valueRegulatory" onchange="toggleValueCategory('value-regulatory', 'regulatory-details')">
+                            <label for="value-regulatory">Regulatory/Compliance Value</label>
+                        </div>
+                        <div id="regulatory-details" class="value-category-details">
+                            <div class="form-group">
+                                <label class="form-label" for="regulatory-desc">Brief Description</label>
+                                <textarea id="regulatory-desc" name="regulatoryDesc" class="form-textarea" rows="2" placeholder="Describe the regulatory/compliance requirement"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="regulatory-driver">Regulatory Driver</label>
+                                <input type="text" id="regulatory-driver" name="regulatoryDriver" class="form-input" placeholder="e.g., NERC CIP, state mandate, federal requirement">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Strategic/Capability Value -->
+                    <div class="value-category">
+                        <div class="value-category-header">
+                            <input type="checkbox" id="value-strategic" name="valueStrategic" onchange="toggleValueCategory('value-strategic', 'strategic-details')">
+                            <label for="value-strategic">Strategic/Capability Value</label>
+                        </div>
+                        <div id="strategic-details" class="value-category-details">
+                            <div class="form-group">
+                                <label class="form-label" for="strategic-desc">Brief Description</label>
+                                <textarea id="strategic-desc" name="strategicDesc" class="form-textarea" rows="2" placeholder="Describe strategic benefits"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="capability-enabled">Capability Enabled</label>
+                                <input type="text" id="capability-enabled" name="capabilityEnabled" class="form-input" placeholder="e.g., Platform for future initiatives, new organizational capability">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Supporting Information -->
+                    <div class="section-header">Section 5: Supporting Information</div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            Attachments (optional)
+                            <span class="tooltip" data-tooltip="Upload any supporting documents - rough estimates, vendor quotes, diagrams, etc.">ⓘ</span>
+                        </label>
+                        <div class="file-upload" onclick="document.getElementById('file-input').click()">
+                            <input type="file" id="file-input" name="attachments" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg,.vsd,.ppt,.pptx" onchange="handleFileUpload('file-input', 'file-display')">
+                            <p>Click to select files or drag and drop</p>
+                            <p class="help-text">Rough estimates, vendor quotes, solution diagrams, requirements, reference materials</p>
+                        </div>
+                        <div id="file-display"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="additional-context">
+                            Additional Context
+                        </label>
+                        <textarea id="additional-context" name="additionalContext" class="form-textarea" rows="4" placeholder="Anything else the EA team should know about this project?"></textarea>
+                    </div>
+
+                    <!-- What Happens Next -->
+                    <div class="help-box">
+                        <h4>What Happens Next?</h4>
+                        <p>Upon submission, the <strong>EA team will</strong>:</p>
+                        <ol>
+                            <li><strong>Screen</strong> your submission (1-2 business days)
+                                <ul>
+                                    <li>Validate tier classification</li>
+                                    <li>Confirm project is ready for qualification</li>
+                                    <li>Identify any immediate concerns</li>
+                                </ul>
+                            </li>
+                            <li><strong>Schedule an intake interview</strong> (30-45 minutes)
+                                <ul>
+                                    <li>Collaborative session with EA facilitator</li>
+                                    <li>You, key stakeholders, and subject matter experts invited</li>
+                                    <li>Session will be recorded for documentation</li>
+                                </ul>
+                            </li>
+                            <li><strong>Develop detailed demand documentation</strong>
+                                <ul>
+                                    <li>EA team uses interview insights to create comprehensive project brief</li>
+                                    <li>No additional work required from you during this phase</li>
+                                </ul>
+                            </li>
+                            <li><strong>Update demand record</strong> with complete information
+                                <ul>
+                                    <li>Interview summary and detailed project documentation added</li>
+                                    <li>Routed to appropriate governance review (Tech Subcommittee)</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <p><strong>Target Cycle Time:</strong> 7-12 days from submission to governance decision</p>
+                    </div>
+
+                    <!-- Form Navigation -->
+                    <div class="form-navigation">
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">
+                            ← Back to Home
+                        </button>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-secondary" onclick="saveDraft('tier3-form')">
+                                Save Draft
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                Submit Tier 3 Request
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Need Help?</h4>
+                    <p>Email: <a href="mailto:ea-intake@company.com">ea-intake@company.com</a></p>
+                    <p>Phone: (XXX) XXX-XXXX</p>
+                    <p><a href="#">Schedule Office Hours</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Tier 3 Examples</a></li>
+                        <li><a href="#">Value Quantification Guide</a></li>
+                        <li><a href="#">Cost Estimation Templates</a></li>
+                        <li><a href="#">Intake FAQs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script>
+        // Enable auto-save
+        enableAutoSave('tier3-form');
+
+        // Enable exit confirmation
+        enableExitConfirmation('tier3-form');
+
+        // Load saved data on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            loadFormData('tier3-form');
+
+            // Set minimum dates to today
+            document.getElementById('target-start').min = getToday();
+            document.getElementById('target-completion').min = getToday();
+
+            // Restore value category states
+            ['operational', 'financial', 'customer', 'regulatory', 'strategic'].forEach(category => {
+                const checkbox = document.getElementById(`value-${category}`);
+                if (checkbox && checkbox.checked) {
+                    toggleValueCategory(`value-${category}`, `${category}-details`);
+                }
+            });
+        });
+
+        // Validate at least two value categories selected
+        document.getElementById('tier3-form').addEventListener('submit', function(e) {
+            const valueCheckboxes = document.querySelectorAll('[name^="value"]');
+            const checkedCount = Array.from(valueCheckboxes).filter(cb => cb.checked).length;
+
+            if (checkedCount < 2) {
+                e.preventDefault();
+                showNotification('Please select at least TWO value categories for Tier 3 projects', 'error');
+                document.querySelector('.value-category').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return false;
+            }
+        });
+
+        // Validate completion date is after start date
+        document.getElementById('target-completion').addEventListener('change', function() {
+            const startDate = new Date(document.getElementById('target-start').value);
+            const completionDate = new Date(this.value);
+
+            if (completionDate <= startDate) {
+                showNotification('Completion date must be after start date', 'warning');
+                this.value = '';
+            }
+        });
+    </script>
+</body>
+</html>

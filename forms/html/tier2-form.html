@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tier 2 Project Intake Form - EA Demand Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Tier 2 Project Intake Form</h1>
+            <p class="subtitle">Investment: $500k+ (or High Complexity) | Completion Time: ~10-15 minutes | Target Cycle: 14-21 days</p>
+        </header>
+
+        <main class="main-content">
+            <div class="card">
+                <div class="alert alert-info">
+                    <h4>Form Instructions - Strategic Investment</h4>
+                    <p>Tier 2 projects are significant strategic investments requiring <strong>executive sponsorship</strong> and formal governance review.</p>
+                    <p><strong>Process:</strong> After submission → EA screening (2-3 days) → 60-minute interview with you and executive sponsor → Business case development → Architecture Board → Tech Subcommittee → TAC decision</p>
+                    <p><strong>Note:</strong> Executive sponsor commitment is required before proceeding to governance.</p>
+                </div>
+
+                <form id="tier2-form" onsubmit="return submitForm('tier2-form', event)">
+                    <!-- Content similar to Tier 3 but with additional strategic sections -->
+                    <!-- Requester, Sponsor, Project Overview sections -->
+
+                    <div class="section-header">Requester Information</div>
+
+                    <div class="form-group">
+                        <label class="form-label">Your Name <span class="required">*</span></label>
+                        <input type="text" name="requesterName" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Your Title <span class="required">*</span></label>
+                        <input type="text" name="requesterTitle" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Department/Business Unit <span class="required">*</span></label>
+                        <input type="text" name="requesterDepartment" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email <span class="required">*</span></label>
+                        <input type="email" name="requesterEmail" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Phone <span class="required">*</span></label>
+                        <input type="tel" name="requesterPhone" class="form-input" required>
+                    </div>
+
+                    <div class="section-header">Executive Sponsor (Required for Tier 2)</div>
+
+                    <div class="form-group">
+                        <label class="form-label">Executive Sponsor Status <span class="required">*</span></label>
+                        <select name="sponsorStatus" class="form-select" required>
+                            <option value="">-- Select Status --</option>
+                            <option value="committed">Yes - Executive sponsor committed</option>
+                            <option value="seeking">Seeking sponsor - Identifying appropriate executive</option>
+                            <option value="unsure">Unsure - Need EA assistance</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Executive Sponsor Name (if committed)</label>
+                        <input type="text" name="executiveSponsor" class="form-input" placeholder="e.g., Jane Smith, VP Operations">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Executive Sponsor Title</label>
+                        <input type="text" name="executiveSponsorTitle" class="form-input" placeholder="e.g., VP Operations">
+                    </div>
+
+                    <!-- Project Overview -->
+                    <div class="section-header">Section 1: Project Overview</div>
+
+                    <div class="form-group">
+                        <label class="form-label">Project Title <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Provide a clear, descriptive name">ⓘ</span>
+                        </label>
+                        <input type="text" name="projectTitle" class="form-input" required placeholder="e.g., Advanced Metering Infrastructure Implementation">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Estimated Total Investment ($k) <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Include all costs over full project lifecycle">ⓘ</span>
+                        </label>
+                        <input type="number" name="estimatedInvestment" class="form-input form-input-small" required min="500" step="10" placeholder="1500">
+                        <span class="help-text">Range: Typically $500k - $5M+ for Tier 2</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Multi-Year Investment Breakdown</label>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                            <div>
+                                <label>Year 1 ($k)</label>
+                                <input type="number" name="year1Investment" class="form-input" min="0" step="10" placeholder="500">
+                            </div>
+                            <div>
+                                <label>Year 2 ($k)</label>
+                                <input type="number" name="year2Investment" class="form-input" min="0" step="10" placeholder="500">
+                            </div>
+                            <div>
+                                <label>Year 3 ($k)</label>
+                                <input type="number" name="year3Investment" class="form-input" min="0" step="10" placeholder="500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Estimated Complexity <span class="required">*</span></label>
+                        <select name="complexity" class="form-select" required>
+                            <option value="">-- Select Complexity --</option>
+                            <option value="medium">Medium - Multiple systems (2-4), moderate integration, cross-functional</option>
+                            <option value="high">High - Enterprise-wide, extensive integration (5+ systems), transformational</option>
+                        </select>
+                        <span class="help-text">Complexity will be validated during EA screening</span>
+                    </div>
+
+                    <!-- Business Need -->
+                    <div class="section-header">Section 2: Business Need</div>
+
+                    <div class="form-group">
+                        <label class="form-label">What problem are you solving or opportunity are you enabling? <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Describe in 3-5 sentences the business need">ⓘ</span>
+                        </label>
+                        <textarea name="businessNeed" class="form-textarea" required rows="6" placeholder="Describe the business problem or opportunity..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Who will benefit? <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Select all that apply">ⓘ</span>
+                        </label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="beneficiary" value="customers">
+                                <span>External Customers</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="beneficiary" value="operations">
+                                <span>Operations Teams</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="beneficiary" value="field-workforce">
+                                <span>Field Workforce</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="beneficiary" value="engineering">
+                                <span>Engineering & Planning</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="beneficiary" value="executive">
+                                <span>Executive Leadership</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="beneficiary" value="multiple">
+                                <span>Multiple Cross-Functional Groups</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">What happens if we don't do this? <span class="required">*</span></label>
+                        <textarea name="consequences" class="form-textarea" required rows="3" placeholder="Describe the consequences of not pursuing this project..."></textarea>
+                    </div>
+
+                    <!-- Proposed Approach -->
+                    <div class="section-header">Section 3: Proposed Approach</div>
+
+                    <div class="form-group">
+                        <label class="form-label">Solution Overview <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Describe in 2-3 sentences your proposed approach">ⓘ</span>
+                        </label>
+                        <textarea name="solutionOverview" class="form-textarea" required rows="4" placeholder="Describe how you propose to address this need..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Primary System(s) Involved</label>
+                        <input type="text" name="primarySystems" class="form-input" placeholder="e.g., Customer Information System, Billing Platform">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Number of System Integrations</label>
+                        <input type="number" name="systemIntegrations" class="form-input form-input-small" min="0" placeholder="5">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Target Start Date</label>
+                        <input type="date" name="targetStart" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Target Completion Date</label>
+                        <input type="date" name="targetCompletion" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Timeline Drivers</label>
+                        <input type="text" name="timelineDrivers" class="form-input" placeholder="e.g., Regulatory deadline, strategic milestone, market window">
+                    </div>
+
+                    <!-- Strategic Alignment -->
+                    <div class="section-header">Section 4: Strategic Alignment & Organizational Context</div>
+
+                    <div class="form-group">
+                        <label class="form-label">Strategic Objectives Supported <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Tier 2 projects often align to multiple objectives">ⓘ</span>
+                        </label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="strategicObjective" value="grid-modernization">
+                                <span>Grid Modernization & Reliability</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="strategicObjective" value="customer-excellence">
+                                <span>Customer Experience Excellence</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="strategicObjective" value="operational-efficiency">
+                                <span>Operational Efficiency</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="strategicObjective" value="digital-transformation">
+                                <span>Digital Transformation</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Why is this strategically important? <span class="required">*</span></label>
+                        <textarea name="strategicImportance" class="form-textarea" required rows="4" placeholder="Describe in 2-3 sentences how this advances enterprise strategy..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Investment Type <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="investmentType" value="mandate" required>
+                                <span>Regulatory Mandate - Required by regulation/compliance</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="investmentType" value="strategic">
+                                <span>Strategic Choice - Business-driven investment</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="investmentType" value="both">
+                                <span>Both - Regulatory driver with strategic value-add</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Departments/Functions Impacted <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Select all that apply">ⓘ</span>
+                        </label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="departmentImpacted" value="customer-service">
+                                <span>Customer Service</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="departmentImpacted" value="operations">
+                                <span>Operations (Distribution/Transmission)</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="departmentImpacted" value="engineering">
+                                <span>Engineering & Planning</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="departmentImpacted" value="it">
+                                <span>Information Technology</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="departmentImpacted" value="finance">
+                                <span>Finance & Accounting</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="departmentImpacted" value="regulatory">
+                                <span>Regulatory Affairs</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="departmentImpacted" value="field-services">
+                                <span>Field Services</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Cross-Functional Change Required?</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="crossFunctionalChange" value="yes">
+                                <span>Yes - Significant cross-functional process/organizational changes</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="crossFunctionalChange" value="no">
+                                <span>No - Changes largely within single function</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="section-subheader">Organizational Readiness</div>
+
+                    <div class="form-group">
+                        <label class="form-label">Organizational Readiness Assessment
+                            <span class="tooltip" data-tooltip="Check all that apply">ⓘ</span>
+                        </label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="readiness" value="budget">
+                                <span>Budget allocated or identified for this investment</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="readiness" value="resources">
+                                <span>Resources (people) available to support project</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="readiness" value="stakeholder-buyin">
+                                <span>Stakeholder awareness and preliminary buy-in</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="readiness" value="change-management">
+                                <span>Change management capability to support adoption</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Readiness Concerns (optional)</label>
+                        <textarea name="readinessConcerns" class="form-textarea" rows="2" placeholder="Describe any organizational readiness concerns or gaps..."></textarea>
+                    </div>
+
+                    <!-- Supporting Information -->
+                    <div class="section-header">Section 5: Supporting Information</div>
+
+                    <div class="form-group">
+                        <label class="form-label">Attachments (optional)
+                            <span class="tooltip" data-tooltip="Upload supporting documents - rough estimates, vendor quotes, diagrams, etc.">ⓘ</span>
+                        </label>
+                        <div class="file-upload" onclick="document.getElementById('file-input').click()">
+                            <input type="file" id="file-input" name="attachments" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg,.vsd,.ppt,.pptx" onchange="handleFileUpload('file-input', 'file-display')">
+                            <p>Click to select files or drag and drop</p>
+                            <p class="help-text">Business case drafts, vendor quotes, architecture diagrams, benchmarking data, regulatory documents</p>
+                        </div>
+                        <div id="file-display"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Additional Context</label>
+                        <textarea name="additionalContext" class="form-textarea" rows="4" placeholder="Anything else the EA team and Strategic Planning should know about this project?"></textarea>
+                    </div>
+
+                    <!-- Value requirements (higher bar than Tier 3) -->
+                    <div class="section-header">Section 6: Expected Value (High Bar for Tier 2)</div>
+
+                    <div class="alert alert-warning">
+                        <h4>Tier 2 Value Requirements</h4>
+                        <p>Must demonstrate <strong>substantial value in 3+ categories</strong></p>
+                        <p>Financial threshold: NPV >$250k over 5 years; IRR >12%</p>
+                    </div>
+
+                    <!-- Simplified value categories for HTML form -->
+                    <div class="value-category">
+                        <div class="value-category-header">
+                            <input type="checkbox" id="value-operational" name="valueOperational" onchange="toggleValueCategory('value-operational', 'operational-details')">
+                            <label for="value-operational">Operational Value (quantified)</label>
+                        </div>
+                        <div id="operational-details" class="value-category-details">
+                            <textarea name="operationalValue" class="form-textarea" rows="3" placeholder="Describe operational benefits and quantify expected improvements..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="value-category">
+                        <div class="value-category-header">
+                            <input type="checkbox" id="value-financial" name="valueFinancial" onchange="toggleValueCategory('value-financial', 'financial-details')">
+                            <label for="value-financial">Financial Value (NPV, IRR required)</label>
+                        </div>
+                        <div id="financial-details" class="value-category-details">
+                            <div class="form-group">
+                                <label>Estimated NPV ($k over 5 years)</label>
+                                <input type="number" name="npv" class="form-input form-input-small" min="250" placeholder="500">
+                            </div>
+                            <div class="form-group">
+                                <label>Estimated IRR (%)</label>
+                                <input type="number" name="irr" class="form-input form-input-small" min="12" step="0.1" placeholder="15.0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="value-category">
+                        <div class="value-category-header">
+                            <input type="checkbox" id="value-customer" name="valueCustomer" onchange="toggleValueCategory('value-customer', 'customer-details')">
+                            <label for="value-customer">Customer Value (quantified)</label>
+                        </div>
+                        <div id="customer-details" class="value-category-details">
+                            <textarea name="customerValue" class="form-textarea" rows="3" placeholder="Describe customer benefits and quantify impact..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="value-category">
+                        <div class="value-category-header">
+                            <input type="checkbox" id="value-regulatory" name="valueRegulatory" onchange="toggleValueCategory('value-regulatory', 'regulatory-details')">
+                            <label for="value-regulatory">Regulatory/Compliance Value</label>
+                        </div>
+                        <div id="regulatory-details" class="value-category-details">
+                            <div class="form-group">
+                                <label class="form-label">Brief Description</label>
+                                <textarea name="regulatoryDesc" class="form-textarea" rows="2" placeholder="Describe the regulatory/compliance requirement"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Regulatory Driver</label>
+                                <input type="text" name="regulatoryDriver" class="form-input" placeholder="e.g., NERC CIP, state mandate, federal requirement">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Compliance Deadline (if applicable)</label>
+                                <input type="date" name="complianceDeadline" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Penalty/Risk if Non-Compliant</label>
+                                <input type="text" name="complianceRisk" class="form-input" placeholder="e.g., $X million penalty, service disruption">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="value-category">
+                        <div class="value-category-header">
+                            <input type="checkbox" id="value-strategic" name="valueStrategic" onchange="toggleValueCategory('value-strategic', 'strategic-details')">
+                            <label for="value-strategic">Strategic/Capability Value</label>
+                        </div>
+                        <div id="strategic-details" class="value-category-details">
+                            <div class="form-group">
+                                <label class="form-label">Brief Description</label>
+                                <textarea name="strategicDesc" class="form-textarea" rows="2" placeholder="Describe strategic benefits and capabilities enabled"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Capability Enabled</label>
+                                <input type="text" name="capabilityEnabled" class="form-input" placeholder="e.g., Platform for future initiatives, new organizational capability">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Strategic Necessity</label>
+                                <textarea name="strategicNecessity" class="form-textarea" rows="2" placeholder="Why is this strategically important now?"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- What Happens Next -->
+                    <div class="help-box">
+                        <h4>What Happens Next - Tier 2 Process</h4>
+                        <ol>
+                            <li><strong>Screening (2-3 days):</strong> EA team + Strategic Planning validate tier and strategic alignment</li>
+                            <li><strong>Intake Interview (60 min):</strong> Deep-dive with you, executive sponsor, key stakeholders</li>
+                            <li><strong>Business Case Development:</strong> EA develops formal business case with financial modeling</li>
+                            <li><strong>Architecture Board Review:</strong> Formal architectural assessment</li>
+                            <li><strong>Tech Subcommittee:</strong> Review and recommendation</li>
+                            <li><strong>TAC Decision:</strong> Final funding authorization</li>
+                        </ol>
+                        <p><strong>Target: 14-21 days</strong> from submission to TAC decision</p>
+                    </div>
+
+                    <!-- Form Navigation -->
+                    <div class="form-navigation">
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">← Back to Home</button>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-secondary" onclick="saveDraft('tier2-form')">Save Draft</button>
+                            <button type="submit" class="btn btn-primary">Submit Tier 2 Request</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script>
+        enableAutoSave('tier2-form');
+        enableExitConfirmation('tier2-form');
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadFormData('tier2-form');
+
+            // Restore value category states
+            ['operational', 'financial', 'customer', 'regulatory', 'strategic'].forEach(category => {
+                const checkbox = document.getElementById(`value-${category}`);
+                if (checkbox && checkbox.checked) {
+                    toggleValueCategory(`value-${category}`, `${category}-details`);
+                }
+            });
+        });
+
+        // Validate at least three value categories selected
+        document.getElementById('tier2-form').addEventListener('submit', function(e) {
+            const valueCheckboxes = document.querySelectorAll('[name^="value"]');
+            const checkedCount = Array.from(valueCheckboxes).filter(cb => cb.checked).length;
+
+            if (checkedCount < 3) {
+                e.preventDefault();
+                showNotification('Please select at least THREE value categories for Tier 2 projects', 'error');
+                document.querySelector('.value-category').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return false;
+            }
+        });
+    </script>
+</body>
+</html>

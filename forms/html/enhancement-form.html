@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhancement Intake Form - EA Demand Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Enhancement Intake Form</h1>
+            <p class="subtitle">Investment &lt; $50,000 | Completion Time: ~5 minutes | Target Cycle: 3 days</p>
+        </header>
+
+        <main class="main-content">
+            <div class="card">
+                <div class="alert alert-info">
+                    <h4>Form Instructions</h4>
+                    <p>This form is for enhancements to existing systems with investments under $50,000. Your form will be auto-saved as you type.</p>
+                    <p><strong>After submission:</strong> Your request will be reviewed by the Product Team Lead and Domain Architecture Representative (if technical review needed).</p>
+                </div>
+
+                <form id="enhancement-form" onsubmit="return submitForm('enhancement-form', event)">
+
+                    <!-- Requester Information -->
+                    <div class="section-header">Requester Information</div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="requester-name">
+                            Full Name <span class="required">*</span>
+                        </label>
+                        <input type="text" id="requester-name" name="requesterName" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="requester-title">
+                            Title <span class="required">*</span>
+                        </label>
+                        <input type="text" id="requester-title" name="requesterTitle" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="requester-department">
+                            Department/Business Unit <span class="required">*</span>
+                        </label>
+                        <input type="text" id="requester-department" name="requesterDepartment" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="requester-email">
+                            Email <span class="required">*</span>
+                        </label>
+                        <input type="email" id="requester-email" name="requesterEmail" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="requester-phone">
+                            Phone <span class="required">*</span>
+                        </label>
+                        <input type="tel" id="requester-phone" name="requesterPhone" class="form-input" required>
+                    </div>
+
+                    <!-- Enhancement Details -->
+                    <div class="section-header">Enhancement Details</div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="enhancement-title">
+                            Enhancement Title <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Provide a brief, descriptive name">ⓘ</span>
+                        </label>
+                        <input type="text" id="enhancement-title" name="enhancementTitle" class="form-input" required placeholder="e.g., Add export to Excel functionality to monthly reports">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="problem-description">
+                            What problem are you solving or opportunity are you enabling? <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Describe in 2-3 sentences">ⓘ</span>
+                        </label>
+                        <textarea id="problem-description" name="problemDescription" class="form-textarea" required rows="4" placeholder="Describe the business need or opportunity this enhancement addresses..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="proposed-solution">
+                            What is the proposed solution? <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Describe your approach in 2-3 sentences">ⓘ</span>
+                        </label>
+                        <textarea id="proposed-solution" name="proposedSolution" class="form-textarea" required rows="4" placeholder="Describe how you propose to address this need..."></textarea>
+                    </div>
+
+                    <!-- Value Categories -->
+                    <div class="section-header">Value Demonstration</div>
+
+                    <p class="help-text">Select all value categories that apply and provide brief quantification. At least ONE value category is required.</p>
+
+                    <!-- Operational Value -->
+                    <div class="value-category">
+                        <div class="value-category-header">
+                            <input type="checkbox" id="value-operational" name="valueOperational" onchange="toggleValueCategory('value-operational', 'operational-details')">
+                            <label for="value-operational">Operational Value</label>
+                        </div>
+                        <div id="operational-details" class="value-category-details">
+                            <div class="form-group">
+                                <label class="form-label" for="operational-desc">Description</label>
+                                <input type="text" id="operational-desc" name="operationalDesc" class="form-input" placeholder="e.g., Improves process efficiency">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="operational-quant">Quantification</label>
+                                <input type="text" id="operational-quant" name="operationalQuant" class="form-input" placeholder="e.g., saves 10 hrs/month">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Financial Value -->
+                    <div class="value-category">
+                        <div class="value-category-header">
+                            <input type="checkbox" id="value-financial" name="valueFinancial" onchange="toggleValueCategory('value-financial', 'financial-details')">
+                            <label for="value-financial">Financial Value</label>
+                        </div>
+                        <div id="financial-details" class="value-category-details">
+                            <div class="form-group">
+                                <label class="form-label" for="financial-desc">Description</label>
+                                <input type="text" id="financial-desc" name="financialDesc" class="form-input" placeholder="e.g., Reduces manual processing costs">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="financial-quant">Quantification ($/year)</label>
+                                <input type="text" id="financial-quant" name="financialQuant" class="form-input" placeholder="e.g., $20,000/year" oninput="formatCurrency(this)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customer Value -->
+                    <div class="value-category">
+                        <div class="value-category-header">
+                            <input type="checkbox" id="value-customer" name="valueCustomer" onchange="toggleValueCategory('value-customer', 'customer-details')">
+                            <label for="value-customer">Customer Value</label>
+                        </div>
+                        <div id="customer-details" class="value-category-details">
+                            <div class="form-group">
+                                <label class="form-label" for="customer-desc">Description</label>
+                                <input type="text" id="customer-desc" name="customerDesc" class="form-input" placeholder="e.g., Improves response time">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="customer-impact">Impact</label>
+                                <input type="text" id="customer-impact" name="customerImpact" class="form-input" placeholder="e.g., affects 50,000 customers">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Regulatory/Compliance Value -->
+                    <div class="value-category">
+                        <div class="value-category-header">
+                            <input type="checkbox" id="value-regulatory" name="valueRegulatory" onchange="toggleValueCategory('value-regulatory', 'regulatory-details')">
+                            <label for="value-regulatory">Regulatory/Compliance Value</label>
+                        </div>
+                        <div id="regulatory-details" class="value-category-details">
+                            <div class="form-group">
+                                <label class="form-label" for="regulatory-desc">Description</label>
+                                <input type="text" id="regulatory-desc" name="regulatoryDesc" class="form-input" placeholder="e.g., Addresses audit finding">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="regulatory-req">Requirement</label>
+                                <input type="text" id="regulatory-req" name="regulatoryReq" class="form-input" placeholder="e.g., NERC CIP requirement">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Strategic/Capability Value -->
+                    <div class="value-category">
+                        <div class="value-category-header">
+                            <input type="checkbox" id="value-strategic" name="valueStrategic" onchange="toggleValueCategory('value-strategic', 'strategic-details')">
+                            <label for="value-strategic">Strategic/Capability Value</label>
+                        </div>
+                        <div id="strategic-details" class="value-category-details">
+                            <div class="form-group">
+                                <label class="form-label" for="strategic-desc">Description</label>
+                                <input type="text" id="strategic-desc" name="strategicDesc" class="form-input" placeholder="e.g., Enables future integration">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="strategic-capability">Capability Enabled</label>
+                                <input type="text" id="strategic-capability" name="strategicCapability" class="form-input" placeholder="e.g., Platform for analytics">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cost and Timeline -->
+                    <div class="section-header">Cost and Timeline</div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="estimated-cost">
+                            Estimated Cost ($k) <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Include all costs: software, hardware, labor, consulting">ⓘ</span>
+                        </label>
+                        <input type="number" id="estimated-cost" name="estimatedCost" class="form-input form-input-small" required min="0" max="50" step="0.1" placeholder="25.5">
+                        <span class="help-text">Maximum $50k for enhancement tier</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="primary-system">
+                            Primary System/Product Affected <span class="required">*</span>
+                        </label>
+                        <select id="primary-system" name="primarySystem" class="form-select" required>
+                            <option value="">-- Select System --</option>
+                            <option value="CIS">Customer Information System (CIS)</option>
+                            <option value="ERP">Enterprise Resource Planning (ERP)</option>
+                            <option value="GIS">Geographic Information System (GIS)</option>
+                            <option value="OMS">Outage Management System (OMS)</option>
+                            <option value="SCADA">SCADA/DMS</option>
+                            <option value="Portal">Customer Portal</option>
+                            <option value="Mobile">Mobile Applications</option>
+                            <option value="Analytics">Analytics Platform</option>
+                            <option value="Other">Other (specify below)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="additional-systems">
+                            Additional Systems (if any)
+                        </label>
+                        <input type="text" id="additional-systems" name="additionalSystems" class="form-input" placeholder="List any other systems affected">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="target-date">
+                            Target Delivery Date <span class="required">*</span>
+                        </label>
+                        <input type="date" id="target-date" name="targetDate" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="timeline-driver">
+                            Business Driver for Timeline (optional)
+                        </label>
+                        <input type="text" id="timeline-driver" name="timelineDriver" class="form-input" placeholder="e.g., Q4 reporting requirement">
+                    </div>
+
+                    <!-- Technical Considerations -->
+                    <div class="section-header">Technical Considerations</div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            Does this enhancement require any of the following?
+                            <span class="tooltip" data-tooltip="Checking any of these will trigger Domain Architecture Representative review">ⓘ</span>
+                        </label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="techConsideration" value="newTechnology">
+                                <span>New technology or vendor not currently used</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="techConsideration" value="externalIntegration">
+                                <span>Integration with external systems</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="techConsideration" value="dataChanges">
+                                <span>Changes to production data</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="techConsideration" value="infrastructure">
+                                <span>New infrastructure or cloud services</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="techConsideration" value="security">
+                                <span>Security or compliance implications</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="techConsideration" value="none">
+                                <span>None of the above</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="tech-details">
+                            Technical Details (if you checked any boxes above)
+                        </label>
+                        <textarea id="tech-details" name="techDetails" class="form-textarea" rows="3" placeholder="Provide brief details about technical considerations..."></textarea>
+                    </div>
+
+                    <!-- Attachments -->
+                    <div class="section-header">Supporting Documentation</div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            Attachments (optional)
+                            <span class="tooltip" data-tooltip="Supported formats: PDF, DOC, DOCX, XLS, XLSX, PNG, JPG (Max 10MB each)">ⓘ</span>
+                        </label>
+                        <div class="file-upload" onclick="document.getElementById('file-input').click()">
+                            <input type="file" id="file-input" name="attachments" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg" onchange="handleFileUpload('file-input', 'file-display')">
+                            <p>Click to select files or drag and drop</p>
+                            <p class="help-text">Mockups, requirements, vendor quotes, or other supporting documents</p>
+                        </div>
+                        <div id="file-display"></div>
+                    </div>
+
+                    <!-- Additional Comments -->
+                    <div class="form-group">
+                        <label class="form-label" for="additional-comments">
+                            Additional Comments
+                        </label>
+                        <textarea id="additional-comments" name="additionalComments" class="form-textarea" rows="3" placeholder="Anything else we should know about this enhancement?"></textarea>
+                    </div>
+
+                    <!-- What Happens Next -->
+                    <div class="help-box">
+                        <h4>What Happens Next?</h4>
+                        <ol>
+                            <li><strong>Auto-routing</strong> to Product Team Lead (1 business day)</li>
+                            <li><strong>DAR Review</strong> if technical triggers identified (1-2 business days)</li>
+                            <li><strong>Product Lead Decision</strong> - Approve/Defer/Reject (3 business days total target)</li>
+                            <li><strong>Status notification</strong> sent to you via email</li>
+                        </ol>
+                    </div>
+
+                    <!-- Form Navigation -->
+                    <div class="form-navigation">
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">
+                            ← Back to Home
+                        </button>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-secondary" onclick="saveDraft('enhancement-form')">
+                                Save Draft
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                Submit Enhancement Request
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Need Help?</h4>
+                    <p>Email: <a href="mailto:ea-intake@company.com">ea-intake@company.com</a></p>
+                    <p>Phone: (XXX) XXX-XXXX</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Enhancement Examples</a></li>
+                        <li><a href="#">Value Assessment Guide</a></li>
+                        <li><a href="#">Intake FAQs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script>
+        // Enable auto-save
+        enableAutoSave('enhancement-form');
+
+        // Enable exit confirmation
+        enableExitConfirmation('enhancement-form');
+
+        // Load saved data on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            loadFormData('enhancement-form');
+
+            // Set minimum date to today
+            document.getElementById('target-date').min = getToday();
+
+            // Restore value category states
+            ['operational', 'financial', 'customer', 'regulatory', 'strategic'].forEach(category => {
+                const checkbox = document.getElementById(`value-${category}`);
+                if (checkbox && checkbox.checked) {
+                    toggleValueCategory(`value-${category}`, `${category}-details`);
+                }
+            });
+        });
+
+        // Validate at least one value category is selected
+        document.getElementById('enhancement-form').addEventListener('submit', function(e) {
+            const valueCheckboxes = document.querySelectorAll('[name^="value"]');
+            const isAnyChecked = Array.from(valueCheckboxes).some(cb => cb.checked);
+
+            if (!isAnyChecked) {
+                e.preventDefault();
+                showNotification('Please select at least one value category', 'error');
+                document.querySelector('.value-category').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return false;
+            }
+        });
+    </script>
+</body>
+</html>
