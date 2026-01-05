@@ -3,228 +3,435 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tier 1 Program Brief - EA Demand Management</title>
+    <title>Tier 1 Program Intake - EA Demand Management</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <h1>Tier 1 Program Brief</h1>
-            <p class="subtitle">Transformational Programs | Investment: Typically $5M+ | Cycle Time: 6-12 weeks</p>
+            <h1>Tier 1 Program Intake</h1>
+            <p class="subtitle">Transformational Programs | Investment: Typically $5M+ | Process: 6-12 weeks</p>
         </header>
 
         <main class="main-content">
             <div class="card">
                 <div class="alert alert-warning">
-                    <h4>Important: Tier 1 Uses a Different Process</h4>
-                    <p>Tier 1 programs are <strong>transformational investments</strong> that require comprehensive planning with Strategic Planning Office support.</p>
-                    <p><strong>This is NOT a quick web form.</strong> You will need to download a template and work with the Strategy Office to complete a 10-page Program Brief.</p>
+                    <h4>Tier 1 Programs - Strategic Planning Office Partnership Required</h4>
+                    <p>This <strong>lightweight intake form</strong> gets your transformational program into the queue and initiates Strategic Planning Office engagement.</p>
+                    <p><strong>After submission:</strong> Strategy Office will contact you within 1-2 days to schedule Gate 0 review and provide Program Brief template and support.</p>
+                    <p><strong>Full Program Brief (10 pages) will be required</strong> before proceeding through governance gates.</p>
                 </div>
 
-                <h3>Tier 1 Characteristics</h3>
+                <form id="tier1-form" onsubmit="return submitForm('tier1-form', event)">
 
-                <div class="help-box">
-                    <h4>When is Tier 1 Required?</h4>
-                    <ul>
-                        <li>Investment >$2M with medium/high complexity</li>
-                        <li>OR Investment $500k-$2M with high complexity</li>
-                        <li>Transformational change with enterprise-wide impact</li>
-                        <li>Multi-year strategic initiatives</li>
-                        <li>Programs requiring board-level visibility (especially >$10M)</li>
-                    </ul>
-                </div>
+                    <!-- Program Sponsor Information -->
+                    <div class="section-header">Program Sponsor (Executive-Level Required)</div>
 
-                <h3>Value Requirements</h3>
-
-                <div class="tier-details">
-                    <div class="tier-detail-item">
-                        <strong>Strategic Imperative:</strong> Must directly enable 3+ strategic objectives; board-level priority
+                    <div class="form-group">
+                        <label class="form-label">Program Sponsor Name <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Executive-level sponsor required for Tier 1">ⓘ</span>
+                        </label>
+                        <input type="text" name="sponsorName" class="form-input" required placeholder="e.g., John Doe, SVP Operations">
                     </div>
-                    <div class="tier-detail-item">
-                        <strong>Transformational Value:</strong> Significant value across ALL FIVE categories
-                    </div>
-                    <div class="tier-detail-item">
-                        <strong>Financial Return:</strong> NPV >$5M over 7 years; IRR >15%
-                    </div>
-                    <div class="tier-detail-item">
-                        <strong>Enterprise Impact:</strong> Cross-domain transformation; organizational change
-                    </div>
-                </div>
 
-                <h3>Required Documentation</h3>
+                    <div class="form-group">
+                        <label class="form-label">Sponsor Title <span class="required">*</span></label>
+                        <input type="text" name="sponsorTitle" class="form-input" required placeholder="e.g., Senior Vice President, Operations">
+                    </div>
 
-                <div class="complexity-grid">
-                    <div class="complexity-item">
-                        <strong>Program Brief (10 pages)</strong>
+                    <div class="form-group">
+                        <label class="form-label">Sponsor Department <span class="required">*</span></label>
+                        <input type="text" name="sponsorDepartment" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Sponsor Email <span class="required">*</span></label>
+                        <input type="email" name="sponsorEmail" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Sponsor Phone <span class="required">*</span></label>
+                        <input type="tel" name="sponsorPhone" class="form-input" required>
+                    </div>
+
+                    <!-- Primary Contact (if different from sponsor) -->
+                    <div class="section-subheader">Primary Contact (if different from sponsor)</div>
+
+                    <div class="form-group">
+                        <label class="form-label">Your Name</label>
+                        <input type="text" name="contactName" class="form-input" placeholder="Business Owner or Program Lead">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Your Email</label>
+                        <input type="email" name="contactEmail" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Your Phone</label>
+                        <input type="tel" name="contactPhone" class="form-input">
+                    </div>
+
+                    <!-- High-Level Program Overview -->
+                    <div class="section-header">High-Level Program Overview</div>
+
+                    <div class="form-group">
+                        <label class="form-label">Program Title <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Clear, descriptive name for this transformational program">ⓘ</span>
+                        </label>
+                        <input type="text" name="programTitle" class="form-input" required placeholder="e.g., Digital Grid Modernization Program">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Rough Order of Magnitude Investment <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Total program investment over all years">ⓘ</span>
+                        </label>
+                        <select name="investmentRange" class="form-select" required>
+                            <option value="">-- Select Investment Range --</option>
+                            <option value="2-5M">$2M - $5M</option>
+                            <option value="5-10M">$5M - $10M</option>
+                            <option value="10-25M">$10M - $25M</option>
+                            <option value="25-50M">$25M - $50M</option>
+                            <option value="50M+">Over $50M</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Program Duration <span class="required">*</span></label>
+                        <select name="programDuration" class="form-select" required>
+                            <option value="">-- Select Duration --</option>
+                            <option value="1-2-years">1-2 Years</option>
+                            <option value="2-3-years">2-3 Years</option>
+                            <option value="3-5-years">3-5 Years</option>
+                            <option value="5+-years">5+ Years</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Program Complexity <span class="required">*</span></label>
+                        <select name="complexity" class="form-select" required>
+                            <option value="">-- Select Complexity --</option>
+                            <option value="high">High - Enterprise-wide, extensive integration (5+ systems), transformational change</option>
+                            <option value="very-high">Very High - Core system replacement, platform transformation, organizational redesign</option>
+                        </select>
+                    </div>
+
+                    <!-- Strategic Imperative -->
+                    <div class="section-header">Strategic Imperative</div>
+
+                    <div class="form-group">
+                        <label class="form-label">Why is this a strategic imperative? <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Describe in 3-5 sentences why this program is essential to enterprise strategy">ⓘ</span>
+                        </label>
+                        <textarea name="strategicImperative" class="form-textarea" required rows="6" placeholder="Describe the strategic necessity, competitive drivers, regulatory imperatives, or transformational objectives..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Strategic Objectives Supported <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Tier 1 must support 3+ strategic objectives - select all that apply">ⓘ</span>
+                        </label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="strategicObjective" value="grid-modernization" required>
+                                <span>Grid Modernization & Reliability</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="strategicObjective" value="customer-excellence">
+                                <span>Customer Experience Excellence</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="strategicObjective" value="operational-efficiency">
+                                <span>Operational Efficiency</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="strategicObjective" value="regulatory-compliance">
+                                <span>Regulatory Compliance</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="strategicObjective" value="aes-growth">
+                                <span>Advanced Energy Solutions Growth</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="strategicObjective" value="workforce-productivity">
+                                <span>Workforce Productivity & Safety</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="strategicObjective" value="digital-transformation">
+                                <span>Digital Transformation</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="strategicObjective" value="asset-management">
+                                <span>Asset Management Excellence</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Is this a Board-level priority? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="boardPriority" value="yes" required>
+                                <span>Yes - Board has expressed priority or expectation</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="boardPriority" value="expected">
+                                <span>Expected - Will require Board approval given size/significance</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="boardPriority" value="no">
+                                <span>No - TAC-level approval sufficient</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Business Need Summary -->
+                    <div class="section-header">Business Need (High-Level Summary)</div>
+
+                    <div class="form-group">
+                        <label class="form-label">What business problem or opportunity does this program address? <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="High-level summary - detailed analysis will be in Program Brief">ⓘ</span>
+                        </label>
+                        <textarea name="businessNeed" class="form-textarea" required rows="5" placeholder="Summarize the business problem, market opportunity, or transformational objective..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">What happens if we don't do this? <span class="required">*</span></label>
+                        <textarea name="consequences" class="form-textarea" required rows="4" placeholder="Describe the consequences, risks, or missed opportunities..."></textarea>
+                    </div>
+
+                    <!-- Proposed Solution (High-Level) -->
+                    <div class="section-header">Proposed Solution (High-Level)</div>
+
+                    <div class="form-group">
+                        <label class="form-label">High-Level Solution Overview <span class="required">*</span>
+                            <span class="tooltip" data-tooltip="Conceptual overview - detailed approach will be in Program Brief">ⓘ</span>
+                        </label>
+                        <textarea name="solutionOverview" class="form-textarea" required rows="5" placeholder="Describe the proposed program approach at a high level..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Program Type <span class="required">*</span></label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="programType" value="core-system-replacement">
+                                <span>Core System Replacement (ERP, CIS, SCADA, OMS, GIS)</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="programType" value="platform-introduction">
+                                <span>New Platform Introduction (Customer Portal, Mobile, IoT, Data Platform)</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="programType" value="digital-transformation">
+                                <span>Digital Transformation Initiative</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="programType" value="infrastructure-modernization">
+                                <span>Infrastructure/Architecture Modernization (Cloud, Microservices)</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="programType" value="regulatory-program">
+                                <span>Regulatory Compliance Program (Enterprise Impact)</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="programType" value="organizational-transformation">
+                                <span>Organizational Transformation</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Expected Value (High-Level) -->
+                    <div class="section-header">Expected Value (High-Level Assessment)</div>
+
+                    <div class="alert alert-warning">
+                        <h4>Tier 1 Value Requirements</h4>
+                        <p><strong>Must demonstrate transformational value across ALL FIVE categories:</strong></p>
                         <ul>
-                            <li>Executive Summary</li>
-                            <li>Strategic Context</li>
-                            <li>Business Need</li>
-                            <li>Proposed Approach</li>
-                            <li>Expected Value</li>
-                            <li>Costs and Funding</li>
-                            <li>Risks and Dependencies</li>
-                            <li>Decision Request</li>
+                            <li>Strategic Imperative: Directly enables 3+ strategic objectives</li>
+                            <li>Financial Return: NPV >$5M over 7 years; IRR >15%</li>
+                            <li>Enterprise Impact: Cross-domain transformation</li>
+                            <li>All five value categories: Operational, Financial, Customer, Regulatory, Strategic</li>
                         </ul>
+                        <p class="help-text">Detailed value analysis will be required in the Program Brief</p>
                     </div>
-                    <div class="complexity-item">
-                        <strong>Supporting Appendices</strong>
-                        <ul>
-                            <li>Financial Model (detailed)</li>
-                            <li>Regulatory Documentation</li>
-                            <li>Stakeholder Analysis</li>
-                            <li>High-Level Architecture</li>
-                            <li>Vendor Proposals/Quotes</li>
-                            <li>Benchmarking Research</li>
-                        </ul>
+
+                    <div class="form-group">
+                        <label class="form-label">Expected Operational Value <span class="required">*</span></label>
+                        <textarea name="operationalValue" class="form-textarea" required rows="3" placeholder="High-level description of operational benefits (reliability, efficiency, safety, performance)..."></textarea>
                     </div>
-                </div>
 
-                <h3>Governance Process</h3>
+                    <div class="form-group">
+                        <label class="form-label">Expected Financial Value <span class="required">*</span></label>
+                        <textarea name="financialValue" class="form-textarea" required rows="3" placeholder="High-level financial benefits and rough NPV estimate..."></textarea>
+                    </div>
 
-                <div class="help-box">
-                    <h4>Six-Gate Process</h4>
-                    <ol>
-                        <li><strong>Gate 0:</strong> Program Brief Review (Initial screening)</li>
-                        <li><strong>Gate 1:</strong> Qualification & Business Case Development (4-8 weeks)</li>
-                        <li><strong>Gate 2:</strong> Architecture Board Review (7-10 days)</li>
-                        <li><strong>Gate 3:</strong> Technology Subcommittee Deep Dive (2-3 hour session)</li>
-                        <li><strong>Gate 4:</strong> ELT Pre-Briefing (Socialize with executives)</li>
-                        <li><strong>Gate 5:</strong> TAC Review and Funding Authorization</li>
-                        <li><strong>Gate 6:</strong> Board Review (if >$10M or strategic significance)</li>
-                    </ol>
-                    <p><strong>Total Cycle Time:</strong> 6-12 weeks</p>
-                </div>
+                    <div class="form-group">
+                        <label class="form-label">Expected Customer Value <span class="required">*</span></label>
+                        <textarea name="customerValue" class="form-textarea" required rows="3" placeholder="High-level customer benefits and impact..."></textarea>
+                    </div>
 
-                <h3>How to Proceed with Tier 1</h3>
+                    <div class="form-group">
+                        <label class="form-label">Expected Regulatory/Compliance Value <span class="required">*</span></label>
+                        <textarea name="regulatoryValue" class="form-textarea" required rows="3" placeholder="Regulatory requirements, compliance benefits, risk mitigation..."></textarea>
+                    </div>
 
-                <div class="card" style="background-color: #f8f9fa;">
-                    <h4>Step 1: Schedule Strategy Office Consultation</h4>
-                    <p>Before completing the Program Brief, schedule a working session with the Strategic Planning Office to:</p>
-                    <ul>
-                        <li>Validate strategic alignment and board-level priority</li>
-                        <li>Confirm executive sponsor commitment</li>
-                        <li>Understand governance timeline and requirements</li>
-                        <li>Receive guidance on Program Brief completion</li>
-                    </ul>
-                    <p><strong>Contact Strategic Planning:</strong></p>
-                    <p>Email: <a href="mailto:strategy@company.com">strategy@company.com</a></p>
-                    <p>Phone: (XXX) XXX-XXXX</p>
-                </div>
+                    <div class="form-group">
+                        <label class="form-label">Expected Strategic/Capability Value <span class="required">*</span></label>
+                        <textarea name="strategicValue" class="form-textarea" required rows="3" placeholder="Strategic capabilities enabled, platform value, competitive advantage..."></textarea>
+                    </div>
 
-                <div class="card" style="background-color: #f8f9fa; margin-top: 20px;">
-                    <h4>Step 2: Download Program Brief Template</h4>
-                    <p>The Program Brief template provides detailed guidance for each section.</p>
-                    <div class="button-group">
-                        <button class="btn btn-primary" onclick="downloadTemplate()">
-                            📄 Download Program Brief Template (Word)
+                    <!-- Timeline and Urgency -->
+                    <div class="section-header">Timeline and Urgency</div>
+
+                    <div class="form-group">
+                        <label class="form-label">Desired Program Start</label>
+                        <select name="desiredStart" class="form-select">
+                            <option value="">-- Select Timeframe --</option>
+                            <option value="immediate">Immediate (within 3 months)</option>
+                            <option value="q2-2026">Q2 2026</option>
+                            <option value="q3-2026">Q3 2026</option>
+                            <option value="q4-2026">Q4 2026</option>
+                            <option value="2027">2027</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Timeline Drivers</label>
+                        <textarea name="timelineDrivers" class="form-textarea" rows="2" placeholder="e.g., Regulatory deadline, strategic window, end-of-life system, competitive pressure..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Is there a critical deadline? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="criticalDeadline" value="yes" required>
+                                <span>Yes - Regulatory or business-critical deadline exists</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="criticalDeadline" value="no">
+                                <span>No - Strategic timing but no hard deadline</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Current Program Status -->
+                    <div class="section-header">Current Program Status</div>
+
+                    <div class="form-group">
+                        <label class="form-label">Program Maturity <span class="required">*</span></label>
+                        <select name="programMaturity" class="form-select" required>
+                            <option value="">-- Select Status --</option>
+                            <option value="concept">Concept Stage - Initial idea being explored</option>
+                            <option value="preliminary">Preliminary - Some analysis completed</option>
+                            <option value="business-case">Business Case In Progress - Developing detailed justification</option>
+                            <option value="vendor-engagement">Vendor Engagement - Evaluating solutions</option>
+                            <option value="ready">Ready - Prepared to proceed pending approval</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">What work has been done to date?</label>
+                        <textarea name="workCompleted" class="form-textarea" rows="3" placeholder="Describe any analysis, vendor discussions, business case development, feasibility studies completed..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Are there preliminary cost estimates or vendor quotes?</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="hasCostEstimates" value="yes">
+                                <span>Yes - Will attach</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="hasCostEstimates" value="no">
+                                <span>No - Need to develop</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Supporting Documentation -->
+                    <div class="section-header">Supporting Documentation (Optional)</div>
+
+                    <div class="form-group">
+                        <label class="form-label">Attachments
+                            <span class="tooltip" data-tooltip="Any preliminary analysis, vendor quotes, regulatory documents, etc.">ⓘ</span>
+                        </label>
+                        <div class="file-upload" onclick="document.getElementById('file-input').click()">
+                            <input type="file" id="file-input" name="attachments" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.png,.jpg,.jpeg" onchange="handleFileUpload('file-input', 'file-display')">
+                            <p>Click to select files or drag and drop</p>
+                            <p class="help-text">Preliminary business case, vendor proposals, feasibility studies, regulatory documents, etc.</p>
+                        </div>
+                        <div id="file-display"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Additional Context</label>
+                        <textarea name="additionalContext" class="form-textarea" rows="4" placeholder="Anything else Strategic Planning and EA should know about this program?"></textarea>
+                    </div>
+
+                    <!-- What Happens Next -->
+                    <div class="help-box">
+                        <h4>What Happens Next - Tier 1 Gate Process</h4>
+                        <p><strong>Upon submission, this intake triggers the following:</strong></p>
+
+                        <h5 style="margin-top: 20px; color: var(--primary-color);">Immediate (1-2 days):</h5>
+                        <ol>
+                            <li><strong>Gate 0 - Initial Screening:</strong> Strategic Planning Office reviews intake</li>
+                            <li><strong>Sponsor Contact:</strong> Strategy Office schedules meeting with executive sponsor</li>
+                            <li><strong>Templates Provided:</strong> You receive Program Brief template and financial model</li>
+                            <li><strong>Support Assigned:</strong> Strategy Office resource assigned to support development</li>
+                        </ol>
+
+                        <h5 style="margin-top: 20px; color: var(--primary-color);">Program Brief Development (2-4 weeks):</h5>
+                        <ol start="5">
+                            <li>Working sessions with Strategy Office to complete 10-page Program Brief</li>
+                            <li>Financial modeling with Finance team</li>
+                            <li>Preliminary architecture assessment with EA</li>
+                            <li>Stakeholder analysis and engagement planning</li>
+                        </ol>
+
+                        <h5 style="margin-top: 20px; color: var(--primary-color);">Gate 1 - Qualification (4-8 weeks):</h5>
+                        <ol start="9">
+                            <li>Comprehensive business case development</li>
+                            <li>Future state architecture design</li>
+                            <li>Detailed financial modeling and risk analysis</li>
+                        </ol>
+
+                        <h5 style="margin-top: 20px; color: var(--primary-color);">Governance Review:</h5>
+                        <ol start="12">
+                            <li><strong>Gate 2:</strong> Architecture Board Review (7-10 days)</li>
+                            <li><strong>Gate 3:</strong> Tech Subcommittee Deep Dive (2-3 hour session)</li>
+                            <li><strong>Gate 4:</strong> Executive Leadership Team Pre-Briefing</li>
+                            <li><strong>Gate 5:</strong> TAC Review and Funding Authorization</li>
+                            <li><strong>Gate 6:</strong> Board Review (if >$10M or strategic significance)</li>
+                        </ol>
+
+                        <p><strong style="color: var(--primary-color);">Total Cycle Time: 6-12 weeks</strong> from intake to authorization</p>
+
+                        <div style="background-color: #fff3cd; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                            <h5 style="color: #856404; margin-bottom: 10px;">📧 You Will Receive:</h5>
+                            <ul style="color: #856404;">
+                                <li>Confirmation email within 15 minutes</li>
+                                <li>Strategy Office contact within 1-2 business days</li>
+                                <li>Program Brief template and guidance documents</li>
+                                <li>Assigned Strategy Office partner for support</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Form Navigation -->
+                    <div class="form-navigation">
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">
+                            ← Back to Home
                         </button>
-                        <button class="btn btn-secondary" onclick="downloadTemplate()">
-                            📄 Download Financial Model Template (Excel)
-                        </button>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-secondary" onclick="saveDraft('tier1-form')">
+                                Save Draft
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                Submit Tier 1 Program Intake
+                            </button>
+                        </div>
                     </div>
-                    <p class="help-text">These templates include detailed instructions and examples.</p>
-                </div>
-
-                <div class="card" style="background-color: #f8f9fa; margin-top: 20px;">
-                    <h4>Step 3: Complete Program Brief (with Strategy Office support)</h4>
-                    <p><strong>Timeline:</strong> Plan 2-4 weeks to complete comprehensive Program Brief</p>
-                    <p><strong>Resources Required:</strong></p>
-                    <ul>
-                        <li>Program Sponsor (Executive-level)</li>
-                        <li>Business Owner</li>
-                        <li>Strategic Planning Office (support)</li>
-                        <li>Enterprise Architecture (consultation)</li>
-                        <li>Finance (financial modeling)</li>
-                    </ul>
-                </div>
-
-                <div class="card" style="background-color: #f8f9fa; margin-top: 20px;">
-                    <h4>Step 4: Submit Completed Program Brief</h4>
-                    <p><strong>Submission Method:</strong> Email (not web portal)</p>
-                    <p><strong>Submit to:</strong> <a href="mailto:tier1-intake@company.com">tier1-intake@company.com</a></p>
-                    <p><strong>Include:</strong></p>
-                    <ul>
-                        <li>Completed Program Brief (10-page document)</li>
-                        <li>Financial Model (Excel)</li>
-                        <li>All supporting appendices</li>
-                        <li>Executive sponsor approval signature</li>
-                    </ul>
-                </div>
-
-                <h3>Alternative: Request EA Consultation</h3>
-
-                <div class="help-box">
-                    <h4>Not Sure If You Need Tier 1?</h4>
-                    <p>If you're uncertain whether your program requires Tier 1 treatment, the EA team can help:</p>
-                    <ul>
-                        <li>Assess program scope and complexity</li>
-                        <li>Determine appropriate tier classification</li>
-                        <li>Advise on phasing strategy (could smaller phases reduce tier?)</li>
-                        <li>Guide strategic planning and sponsor identification</li>
-                    </ul>
-                    <p><strong>Schedule Consultation:</strong></p>
-                    <p>Email: <a href="mailto:ea-intake@company.com">ea-intake@company.com</a></p>
-                    <p>Phone: (XXX) XXX-XXXX</p>
-                </div>
-
-                <!-- Examples of Tier 1 Programs -->
-                <h3>Examples of Tier 1 Programs</h3>
-
-                <div class="complexity-grid">
-                    <div class="complexity-item">
-                        <strong>Core System Replacements</strong>
-                        <ul>
-                            <li>ERP modernization</li>
-                            <li>CIS replacement</li>
-                            <li>SCADA/OMS upgrade</li>
-                            <li>GIS transformation</li>
-                        </ul>
-                    </div>
-                    <div class="complexity-item">
-                        <strong>Platform Initiatives</strong>
-                        <ul>
-                            <li>Unified customer portal</li>
-                            <li>Mobile workforce platform</li>
-                            <li>IoT infrastructure</li>
-                            <li>Enterprise data platform</li>
-                        </ul>
-                    </div>
-                    <div class="complexity-item">
-                        <strong>Digital Transformation</strong>
-                        <ul>
-                            <li>Grid modernization program</li>
-                            <li>Customer experience transformation</li>
-                            <li>Advanced analytics platform</li>
-                            <li>Cloud migration</li>
-                        </ul>
-                    </div>
-                    <div class="complexity-item">
-                        <strong>Strategic Programs</strong>
-                        <ul>
-                            <li>Advanced energy solutions growth</li>
-                            <li>Regulatory compliance programs</li>
-                            <li>Enterprise architecture modernization</li>
-                            <li>Organizational transformation</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Quick Actions -->
-                <div class="form-navigation">
-                    <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">
-                        ← Back to Home
-                    </button>
-                    <div class="button-group">
-                        <button type="button" class="btn btn-secondary" onclick="window.location.href='mailto:strategy@company.com?subject=Tier 1 Program Consultation Request'">
-                            📧 Email Strategy Office
-                        </button>
-                        <button type="button" class="btn btn-primary" onclick="downloadTemplate()">
-                            📄 Download Templates
-                        </button>
-                    </div>
-                </div>
-
+                </form>
             </div>
         </main>
 
@@ -243,10 +450,10 @@
                 <div class="footer-section">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="#">Tier 1 Examples</a></li>
-                        <li><a href="#">Financial Modeling Guide</a></li>
-                        <li><a href="#">Governance Process Overview</a></li>
-                        <li><a href="#">Program Charter Template</a></li>
+                        <li><a href="#" onclick="downloadTemplate(); return false;">Download Program Brief Template</a></li>
+                        <li><a href="#" onclick="downloadTemplate(); return false;">Download Financial Model Template</a></li>
+                        <li><a href="#">Tier 1 Examples & Case Studies</a></li>
+                        <li><a href="#">Governance Process Guide</a></li>
                     </ul>
                 </div>
             </div>
@@ -255,12 +462,31 @@
 
     <script src="scripts.js"></script>
     <script>
-        function downloadTemplate() {
-            // In a real implementation, this would trigger download of actual templates
-            showNotification('Template download functionality would be implemented here. Templates would be stored on SharePoint or similar.', 'info');
+        // Enable auto-save
+        enableAutoSave('tier1-form');
 
-            // Example implementation:
-            // window.location.href = '/templates/tier1-program-brief-template.docx';
+        // Enable exit confirmation
+        enableExitConfirmation('tier1-form');
+
+        // Load saved data on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            loadFormData('tier1-form');
+        });
+
+        // Validate at least three strategic objectives selected
+        document.getElementById('tier1-form').addEventListener('submit', function(e) {
+            const strategicObjectives = document.querySelectorAll('[name="strategicObjective"]:checked');
+
+            if (strategicObjectives.length < 3) {
+                e.preventDefault();
+                showNotification('Tier 1 programs must support at least THREE strategic objectives', 'error');
+                document.querySelector('[name="strategicObjective"]').closest('.form-group').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return false;
+            }
+        });
+
+        function downloadTemplate() {
+            showNotification('Template download links would be provided by Strategic Planning Office after intake submission', 'info');
         }
     </script>
 </body>
