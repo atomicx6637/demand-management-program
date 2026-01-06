@@ -8,7 +8,6 @@
 **Related Documents:**
 - [Federated Demand Governance Model](./federated-demand-governance-model.md)
 - [Demand Workflow Visual](./demand-workflow-visual.md)
-- [Investment Portfolio View](./BA-KNOWLEDGEBASE/12-ARCHITECTURE-VIEWS/executive-views/investment-portfolio-view.md)
 
 ---
 

@@ -468,8 +468,8 @@ Events that fail after max retries go to Dead Letter Topic for investigation:
 
 ## Related Patterns
 - [API-Led Connectivity Pattern](./api-led-connectivity-pattern.md) - For request-response APIs
-- [Change Data Capture (CDC) Pattern](./change-data-capture-pattern.md) - For database event streaming
-- [CQRS Pattern](./cqrs-pattern.md) - Command-Query Responsibility Segregation with events
+- Change Data Capture (CDC) Pattern - For database event streaming (in development)
+- CQRS Pattern - Command-Query Responsibility Segregation with events (in development)
 
 ---
 

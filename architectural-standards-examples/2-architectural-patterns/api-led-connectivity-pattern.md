@@ -310,8 +310,8 @@ Customer Portal (Web UI)
 
 ## Related Patterns
 - [Event-Driven Integration Pattern](./event-driven-integration-pattern.md) - For real-time event streaming
-- [Master Data Management Pattern](./master-data-pattern.md) - For canonical data models
-- [Security Authentication Pattern](./oauth2-authentication-pattern.md) - For API security
+- Master Data Management Pattern - For canonical data models (in development)
+- Security Authentication Pattern (OAuth2) - For API security (in development)
 
 ---
 

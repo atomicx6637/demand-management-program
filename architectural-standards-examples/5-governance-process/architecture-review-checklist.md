@@ -335,8 +335,8 @@ This checklist is used by DARs and EA team to conduct architecture reviews for a
 
 ## Document Templates
 
-- [Architecture Review Checklist (Excel)](./templates/architecture-review-checklist.xlsx) - Fillable version
-- [Architecture Review Summary Report](./templates/architecture-review-summary.docx) - For EA presentation
+- Architecture Review Checklist (Excel) - Internal EA template (request via ea-architecture-review@utility.com)
+- Architecture Review Summary Report - Internal EA template (request via ea-architecture-review@utility.com)
 
 ---
 

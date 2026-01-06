@@ -433,8 +433,8 @@ GET  /field-worker/sync/delta?lastSync={timestamp}
 
 ## Related Documents
 - [API-Led Connectivity Pattern](../2-architectural-patterns/api-led-connectivity-pattern.md)
-- [Work & Asset Management Integration](./work-asset-management-integration.md)
-- [Mobile Application Security Standards](../1-technology-standards/mobile-security-standards.md)
+- Work & Asset Management Integration (in development)
+- Mobile Application Security Standards (in development)
 
 ---
 

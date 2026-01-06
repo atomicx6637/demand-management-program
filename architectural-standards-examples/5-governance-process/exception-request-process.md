@@ -54,7 +54,7 @@ This document defines the process for requesting exceptions to established archi
 ### Step 2: Submit Exception Request Form
 
 **Requester**: Project Sponsor or Business Unit Leader
-**Form**: [Exception Request Template](./templates/exception-request-form.docx)
+**Form**: Exception Request Template (internal Word doc—request from EA team)
 
 **Required Information**:
 
@@ -338,9 +338,9 @@ A: Architecture bypass. EA flags to management. Project may be stopped until com
 
 ## Templates & Tools
 
-- [Exception Request Form (Word)](./templates/exception-request-form.docx)
-- [Exception Evaluation Scorecard (Excel)](./templates/exception-eval-scorecard.xlsx)
-- [Pilot Success Criteria Template](./templates/pilot-success-criteria.docx)
+- Exception Request Form (Word) - internal template supplied by EA team
+- Exception Evaluation Scorecard (Excel) - internal template supplied by EA team
+- Pilot Success Criteria Template - internal guidance document from EA team
 
 ---
 

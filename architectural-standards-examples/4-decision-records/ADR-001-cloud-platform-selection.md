@@ -236,10 +236,10 @@ The utility is embarking on cloud transformation to enable:
 
 ## References
 
-- **Technology Evaluation Scorecard**: [Azure vs AWS vs GCP Evaluation](./supporting-docs/ADR-001-cloud-eval-scorecard.xlsx)
+- **Technology Evaluation Scorecard**: Azure vs AWS vs GCP Evaluation (internal workbook)
 - **Utility Reference Calls**: Duke Energy, Exelon, Southern Company (Azure customers)
-- **Microsoft Proposal**: [Azure Enterprise Agreement Proposal](./supporting-docs/ADR-001-microsoft-azure-proposal.pdf)
-- **Security Assessment**: [Azure NERC CIP Compliance Review](./supporting-docs/ADR-001-azure-nerc-cip-assessment.pdf)
+- **Microsoft Proposal**: Azure Enterprise Agreement Proposal (internal document)
+- **Security Assessment**: Azure NERC CIP Compliance Review (internal assessment)
 
 ---
 
@@ -268,5 +268,5 @@ The utility is embarking on cloud transformation to enable:
 **Document Owner**: Enterprise Architecture Leadership
 **Classification**: Internal - Confidential
 **Related ADRs**:
-- [ADR-002: Data Warehouse Platform - Snowflake](./ADR-002-data-warehouse-snowflake.md)
-- [ADR-015: Hybrid Cloud Strategy for SCADA/OT](./ADR-015-hybrid-cloud-scada.md)
+- ADR-002: Data Warehouse Platform - Snowflake (in development)
+- ADR-015: Hybrid Cloud Strategy for SCADA/OT (in development)

@@ -231,10 +231,10 @@ Regardless of score, **reject** if any of these present:
 
 ## Templates & Tools
 
-- [Technology Evaluation Request Form](./templates/tech-eval-request-form.docx)
-- [Technology Evaluation Scorecard (Excel)](./templates/tech-eval-scorecard.xlsx)
-- [Reference Check Interview Guide](./templates/reference-check-guide.pdf)
-- [Technology Evaluation Report Template](./templates/tech-eval-report-template.docx)
+- Technology Evaluation Request Form - internal Word template (contact EA Leadership)
+- Technology Evaluation Scorecard (Excel) - internal tool for scoring
+- Reference Check Interview Guide - internal PDF guide
+- Technology Evaluation Report Template - internal document for final summaries
 
 ---
 

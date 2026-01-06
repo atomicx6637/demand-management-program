@@ -460,8 +460,8 @@ Log: Yes, Alert: Yes (security incident if attempted)
 
 ## Related Documents
 - [Event-Driven Integration Pattern](../2-architectural-patterns/event-driven-integration-pattern.md)
-- [NERC CIP Compliance Standards](../1-technology-standards/nerc-cip-compliance.md)
-- [Cybersecurity Architecture Principles](../1-technology-standards/cybersecurity-principles.md)
+- NERC CIP Compliance Standards (refer to corporate compliance playbooks)
+- Cybersecurity Architecture Principles (refer to corporate security standards)
 
 ---
 

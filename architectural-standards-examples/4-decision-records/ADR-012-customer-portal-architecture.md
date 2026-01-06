@@ -333,9 +333,9 @@ The utility needs to modernize its customer self-service web portal. Current por
 ## References
 
 - **Design Prototypes**: [Figma - Customer Portal Designs](https://figma.com/customer-portal-designs)
-- **API Specifications**: [OpenAPI Spec - customer-portal-exp-api](./supporting-docs/ADR-012-customer-portal-api-spec.yaml)
-- **Security Assessment**: [Penetration Test Report](./supporting-docs/ADR-012-pen-test-report.pdf)
-- **Load Testing**: [Performance Test Results](./supporting-docs/ADR-012-load-test-results.pdf)
+- **API Specifications**: OpenAPI Spec - customer-portal-exp-api (internal document)
+- **Security Assessment**: Penetration Test Report (internal document)
+- **Load Testing**: Performance Test Results (internal document)
 
 ---
 
@@ -355,5 +355,5 @@ The utility needs to modernize its customer self-service web portal. Current por
 **Classification**: Internal - Confidential
 **Related ADRs**:
 - [ADR-001: Cloud Platform Selection - Azure](./ADR-001-cloud-platform-selection.md)
-- [ADR-008: API-Led Connectivity Standard](./ADR-008-api-led-connectivity.md)
-- [ADR-019: Authentication - Azure AD B2C for Customer Portal](./ADR-019-customer-auth-azure-ad-b2c.md)
+- ADR-008: API-Led Connectivity Standard (in development)
+- ADR-019: Authentication - Azure AD B2C for Customer Portal (in development)

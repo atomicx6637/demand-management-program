@@ -121,9 +121,9 @@ If a project requires integration technology NOT on this list:
 ---
 
 ## Related Documents
-- [Integration Patterns Library](../2-architectural-patterns/integration-patterns/)
+- [Integration Patterns Library](../2-architectural-patterns)
 - [SCADA/OT to IT Integration Reference Architecture](../3-reference-architectures/scada-ot-to-it-integration.md)
-- [API Standards and Governance](./api-standards-governance.md)
+- API Standards and Governance (in development)
 
 ---
 
