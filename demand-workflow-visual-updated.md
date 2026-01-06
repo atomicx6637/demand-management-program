@@ -36,7 +36,7 @@ flowchart TD
     %% Connections
     Start --> Type
     Type -->|Break-Fix / Incident| Ops --> End
-    Type -->|Enhancement (&lt;$50k)| EnhIntake
+    Type -->|Enhancement (under $50k)| EnhIntake
     Type -->|Tier 3 / Tier 2 / Tier 1 Project| ProjIntake
 
     %% Enhancement Flow
