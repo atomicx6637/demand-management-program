@@ -33,6 +33,15 @@
 
 ---
 
+## Prioritization Category
+
+Tier 1 programs are almost exclusively categorized as **Priority Development** or **Mandatory**.
+
+-   **Priority Development:** Transformational initiatives that create new business models or provide a competitive advantage.
+-   **Mandatory:** Initiatives required by regulation or essential for business continuity.
+
+---
+
 ## High Complexity Characteristics
 
 **What Makes a Program "High Complexity"?**
@@ -194,9 +203,9 @@ Tier 1 intake is a **collaborative, strategic process** involving Strategy Offic
 
 ## Decision Criteria - Transformational Value Required
 
-### **Value Threshold - ALL FIVE CATEGORIES:**
+### **Value Threshold - Transformational Value Required**
 
-Tier 1 must demonstrate **transformational value across ALL FIVE categories**:
+Tier 1 must demonstrate **transformational value across all value categories**:
 
 1. **Operational Value:**
    - Major reliability improvements (SAIDI/SAIFI)

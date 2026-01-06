@@ -787,10 +787,45 @@
                     </div>
                 </div>
 
-                <!-- Section 5: Zero-Based Prioritization -->
+                <!-- Section 5: Gartner Prioritization Framework -->
                 <div class="section">
                     <h2>
                         <span class="section-number">5</span>
+                        Gartner Prioritization Framework
+                    </h2>
+
+                    <div class="info-box">
+                        Select the category that best describes the primary driver for this initiative.
+                    </div>
+
+                    <div class="form-group">
+                        <label for="primaryCategory">Primary Category *</label>
+                        <select id="primaryCategory" required>
+                            <option value="">-- Select a Category --</option>
+                            <option value="Mandatory">Mandatory</option>
+                            <option value="Priority Development">Priority Development</option>
+                            <option value="Improvement">Improvement</option>
+                            <option value="Maintenance">Maintenance</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subCategory">Sub-category *</label>
+                        <select id="subCategory" required>
+                            <option value="">-- Select a Sub-category --</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="justification">Justification *</label>
+                        <textarea id="justification" required placeholder="Provide a brief explanation for why this initiative belongs in the selected category. For Mandatory, cite the regulation or risk. For Priority Development, link to strategy. For Improvement, state the expected savings. For Maintenance, describe the technical need."></textarea>
+                    </div>
+                </div>
+
+                <!-- Section 6: Zero-Based Prioritization -->
+                <div class="section">
+                    <h2>
+                        <span class="section-number">6</span>
                         Zero-Based Prioritization
                     </h2>
 
@@ -999,6 +1034,11 @@
                     </div>
 
                     <div class="result-card">
+                        <h3>Gartner Prioritization</h3>
+                        <div id="gartnerPrioritizationResult"></div>
+                    </div>
+
+                    <div class="result-card">
                         <h3>Recommendations</h3>
                         <div id="recommendationsResult"></div>
                     </div>
@@ -1014,6 +1054,29 @@
     </div>
 
     <script>
+        const subCategoryOptions = {
+            "Mandatory": ["Compliance", "Security", "Criticality"],
+            "Priority Development": ["Transformation", "Core Differentiation", "Growth"],
+            "Improvement": ["Operational Efficiency", "Capital Efficiency"],
+            "Maintenance": ["Bug Fixes", "Software Upgrades", "Hardware Refresh"]
+        };
+
+        const primaryCategorySelect = document.getElementById('primaryCategory');
+        const subCategorySelect = document.getElementById('subCategory');
+
+        primaryCategorySelect.addEventListener('change', function() {
+            const selectedCategory = this.value;
+            subCategorySelect.innerHTML = '<option value="">-- Select a Sub-category --</option>'; // Clear existing options
+
+            if (selectedCategory && subCategoryOptions[selectedCategory]) {
+                subCategoryOptions[selectedCategory].forEach(subCategory => {
+                    const option = document.createElement('option');
+                    option.value = subCategory;
+                    option.textContent = subCategory;
+                    subCategorySelect.appendChild(option);
+                });
+            }
+        });
         // Toggle value detail textareas
         document.querySelectorAll('input[name="valueCategories"]').forEach(checkbox => {
             checkbox.addEventListener('change', function() {
@@ -1052,8 +1115,11 @@
             // Calculate prioritization score
             const prioritizationData = calculatePrioritization(totalCost, valueScore);
 
+            // Get Gartner prioritization data
+            const gartnerData = getGartnerData();
+
             // Display results
-            displayResults(projectName, totalCost, complexityLevel, complexityScore, tier, valueScore, riskScore, prioritizationData);
+            displayResults(projectName, totalCost, complexityLevel, complexityScore, tier, valueScore, riskScore, prioritizationData, gartnerData);
 
             // Scroll to results
             document.getElementById('results').style.display = 'block';
@@ -1115,6 +1181,13 @@
             return checkboxes.length;
         }
 
+        function getGartnerData() {
+            const primaryCategory = document.getElementById('primaryCategory').value;
+            const subCategory = document.getElementById('subCategory').value;
+            const justification = document.getElementById('justification').value;
+            return { primaryCategory, subCategory, justification };
+        }
+
         function calculatePrioritization(totalCost, valueScore) {
             // Get all prioritization factors
             const strategicAlignment = parseInt(document.querySelector('input[name="strategicAlignment"]:checked')?.value || 0);
@@ -1164,7 +1237,7 @@
             };
         }
 
-        function displayResults(projectName, totalCost, complexityLevel, complexityScore, tierInfo, valueScore, riskScore, prioritizationData) {
+        function displayResults(projectName, totalCost, complexityLevel, complexityScore, tierInfo, valueScore, riskScore, prioritizationData, gartnerData) {
             // Tier Result
             const tierClass = getTierClass(tierInfo.tier);
             document.getElementById('tierResult').innerHTML = `
@@ -1216,8 +1289,22 @@
             // Prioritization Result
             document.getElementById('prioritizationResult').innerHTML = generatePrioritizationDisplay(prioritizationData, totalCost, valueScore);
 
+            // Gartner Prioritization Result
+            document.getElementById('gartnerPrioritizationResult').innerHTML = `
+                <div class="result-item">
+                    <strong>Primary Category:</strong> ${gartnerData.primaryCategory}
+                </div>
+                <div class="result-item">
+                    <strong>Sub-category:</strong> ${gartnerData.subCategory}
+                </div>
+                <div class="result-item">
+                    <strong>Justification:</strong>
+                    <p style="white-space: pre-wrap; margin-top: 5px;">${gartnerData.justification}</p>
+                </div>
+            `;
+
             // Recommendations
-            document.getElementById('recommendationsResult').innerHTML = generateRecommendations(tierInfo.tier, valueScore, riskScore, complexityLevel, prioritizationData);
+            document.getElementById('recommendationsResult').innerHTML = generateRecommendations(tierInfo.tier, valueScore, riskScore, complexityLevel, prioritizationData, gartnerData);
         }
 
         function getTierClass(tier) {
@@ -1491,19 +1578,32 @@
             }
         }
 
-        function generateRecommendations(tier, valueScore, riskScore, complexityLevel, prioritizationData) {
+        function generateRecommendations(tier, valueScore, riskScore, complexityLevel, prioritizationData, gartnerData) {
             const recommendations = [];
+
+            // Gartner category recommendations
+            if (gartnerData) {
+                if (gartnerData.primaryCategory === 'Mandatory') {
+                    recommendations.push('<strong>Portfolio Priority:</strong> Mandatory - Fund and execute to meet compliance/critical need.');
+                } else if (gartnerData.primaryCategory === 'Priority Development') {
+                    recommendations.push('<strong>Portfolio Priority:</strong> Priority Development - Evaluate against other strategic initiatives based on potential ROI and market impact.');
+                } else if (gartnerData.primaryCategory === 'Improvement') {
+                    recommendations.push('<strong>Portfolio Priority:</strong> Improvement - Evaluate based on ROI and payback period against other improvement projects.');
+                } else if (gartnerData.primaryCategory === 'Maintenance') {
+                     recommendations.push('<strong>Portfolio Priority:</strong> Maintenance - Fund from dedicated IT maintenance budget based on technical need.');
+                }
+            }
 
             // Prioritization-based recommendations
             if (prioritizationData) {
                 if (prioritizationData.priorityScore >= 80) {
-                    recommendations.push('<strong>Portfolio Priority:</strong> Critical - Recommend immediate funding and resource allocation');
+                    recommendations.push('<strong>Zero-Based Priority:</strong> Critical - Recommend immediate funding and resource allocation');
                 } else if (prioritizationData.priorityScore >= 65) {
-                    recommendations.push('<strong>Portfolio Priority:</strong> High - Include in current planning cycle with committed resources');
+                    recommendations.push('<strong>Zero-Based Priority:</strong> High - Include in current planning cycle with committed resources');
                 } else if (prioritizationData.priorityScore >= 50) {
-                    recommendations.push('<strong>Portfolio Priority:</strong> Medium - Evaluate against other medium-priority initiatives for resource allocation');
+                    recommendations.push('<strong>Zero-Based Priority:</strong> Medium - Evaluate against other medium-priority initiatives for resource allocation');
                 } else if (prioritizationData.priorityScore < 35) {
-                    recommendations.push('<strong>Portfolio Priority:</strong> Low - Consider deferral or alternative approaches that deliver higher value');
+                    recommendations.push('<strong>Zero-Based Priority:</strong> Low - Consider deferral or alternative approaches that deliver higher value');
                 }
 
                 // Strategic alignment recommendations
@@ -1603,6 +1703,7 @@
                     factors: getSelectedRiskFactors()
                 },
                 prioritization: calculatePrioritization(totalCost, valueScore),
+                gartnerPrioritization: getGartnerData(),
                 tier: determineTier(totalCost, complexityLevel),
                 timestamp: new Date().toISOString()
             };

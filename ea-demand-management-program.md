@@ -1885,360 +1885,221 @@ For each benefit:
 
 ---
 
-## 7. Zero-Based Prioritization Framework
+## 7. Gartner Prioritization Framework
 
 ### 7.1 Philosophy and Purpose
 
-**Core Philosophy:** Every initiative must justify its place in the portfolio as if resources were being allocated from zero. Each investment competes for finite resources against all other potential uses, including doing nothing.
+**Core Philosophy:** All investments are categorized to ensure alignment with strategic objectives and operational necessities. This framework, inspired by Gartner's model, provides a clear, qualitative approach to portfolio management, ensuring that resources are allocated to the most appropriate areas based on their contribution to the enterprise.
 
 **Purpose:**
-- Enable objective comparison of initiatives across different tiers, domains, and value categories
-- Force explicit trade-off decisions in resource-constrained environments
-- Prevent "incrementalism" where marginal investments accumulate without strategic scrutiny
-- Create transparency in portfolio decisions and resource allocation
-- Shift conversation from "should we fund this?" to "is this the best use of these resources?"
-
-**Key Difference from Traditional Prioritization:**
-Traditional prioritization often assumes a baseline of existing work that continues by default, with only new requests requiring justification. Zero-based prioritization assumes **nothing** continues unless it earns its place through demonstrated value, strategic alignment, and comparative advantage.
+- To categorize investments into clear, understandable buckets that reflect their strategic intent.
+- To facilitate portfolio balancing across different types of investment (e.g., mandatory vs. growth).
+- To provide a common language for discussing and debating the merits of different initiatives.
+- To ensure that non-discretionary work is clearly identified and managed, while discretionary investments are aligned with strategic goals.
 
 ---
 
-### 7.2 Zero-Based Prioritization Dimensions
+### 7.2 Prioritization Categories
 
-All initiatives (Enhancement through Tier 1) are evaluated across five dimensions to generate a **Priority Score** that enables portfolio-wide comparison and resource allocation decisions.
+All initiatives are classified into one of four categories. This classification determines the funding approach, governance path, and portfolio treatment.
 
-#### Dimension 1: Strategic Alignment (Weight: 25%)
+#### Category 1: Mandatory
 
-**Question:** How directly does this initiative enable enterprise strategic objectives?
+**Description:** Investments required to comply with government regulations, industry standards, or legal mandates. This category also includes investments that are critical to business continuity, security, or financial reporting, where failure to invest would result in significant loss of income, legal penalties, or existential risk.
 
-| Score | Level | Criteria |
-|-------|-------|----------|
-| **5** | Direct Enabler | Directly enables 3+ strategic objectives; mission-critical to strategy execution |
-| **4** | Strong Support | Strongly supports 2 strategic objectives; significant strategic impact |
-| **3** | Moderate Support | Supports 1 strategic objective; clear strategic relevance |
-| **2** | Tangential | Indirect or weak strategic connection; "nice to have" |
-| **1** | No Clear Alignment | No discernible connection to strategic objectives |
+**Sub-categories:**
+- **Compliance:** Fulfilling legal or regulatory requirements (e.g., NERC CIP, PUC orders, environmental standards).
+- **Security:** Addressing critical security vulnerabilities or threats.
+- **Criticality:** Preventing imminent failure of a mission-critical system or process; addressing significant delays in financial reporting.
 
-**Assessment Guidance:**
-- Reference the current Enterprise Strategic Plan objectives (typically 5-8 objectives)
-- Look for **direct enablement** (can't achieve objective without this) vs. **support** (helps but not essential)
-- Board-approved strategic initiatives receive automatic score of 5
+**Portfolio Treatment:**
+- **Funding:** Non-discretionary. These initiatives are funded first, before any discretionary investments are considered.
+- **Governance:** Fast-tracked through governance for approval and execution. The focus is on *how* to deliver, not *if*.
+- **Justification:** Justification is based on the mandate or critical business need, not on traditional ROI. The cost of *inaction* is the primary driver.
 
 ---
 
-#### Dimension 2: Urgency / Timing Criticality (Weight: 20%)
+#### Category 2: Priority Development
 
-**Question:** What are the consequences if we delay this initiative by 6-12 months?
+**Description:** Discretionary investments focused on building the future business capabilities that will deliver a competitive advantage. These initiatives are about creating new value, entering new markets, or fundamentally changing how the business operates.
 
-| Score | Level | Criteria |
-|-------|-------|----------|
-| **5** | Critical | Regulatory deadline; major revenue/cost impact; existential risk |
-| **4** | High | Significant competitive disadvantage; material opportunity loss; customer impact |
-| **3** | Moderate | Some opportunity loss or inefficiency; manageable delay impact |
-| **2** | Low | Minimal impact from delay; incremental value loss |
-| **1** | Flexible | Can be deferred indefinitely without material consequence |
+**Sub-categories:**
+- **Transformation:** Creating new business models or fundamentally altering the enterprise's value proposition.
+- **Core Differentiation:** Building unique capabilities that allow the business to stand out in the market.
+- **Growth:** Expanding the business within the current business model (e.g., new products, new markets).
 
-**Assessment Guidance:**
-- Consider **regulatory mandates** (NERC CIP, PUC orders) → typically score 5
-- Evaluate **opportunity cost** of delay in quantified terms
-- Distinguish between "we want it now" vs. "we need it now"
-- Time-bound opportunities (market windows, vendor support end-of-life) increase urgency
+**Portfolio Treatment:**
+- **Funding:** Discretionary, allocated from a strategic investment fund or portfolio. Competes with other Priority Development initiatives.
+- **Governance:** Subject to rigorous business case evaluation, including strategic alignment, market analysis, and financial modeling (NPV, IRR).
+- **Justification:** Based on long-term value creation, strategic fit, and potential for significant return on investment.
 
 ---
 
-#### Dimension 3: Dependency / Enablement Factor (Weight: 15%)
+#### Category 3: Improvement
 
-**Question:** Does this initiative enable or block other valuable initiatives?
+**Description:** Discretionary investments aimed at optimizing existing business processes, systems, and resources. The focus is on doing things better, faster, and cheaper.
 
-| Score | Level | Criteria |
-|-------|-------|----------|
-| **5** | Foundation | Platform/foundation enabling 5+ future initiatives; architectural cornerstone |
-| **4** | Strong Enabler | Enables 3-4 other high-value initiatives; unlocks portfolio value |
-| **3** | Moderate Enabler | Enables 1-2 other initiatives; some enablement value |
-| **2** | Independent | Standalone value; no major enabling or blocking effects |
-| **1** | Dependent/Blocked | Blocked by other initiatives; creates negative dependencies |
+**Sub-categories:**
+- **Operational Efficiency:** Reducing personnel costs, increasing productivity, or streamlining workflows.
+- **Capital Efficiency:** Reducing the need for hardware/software resources, leveraging economies of scale, or improving asset utilization.
 
-**Assessment Guidance:**
-- **Platform investments** (customer portal, data fabric, integration layer) → typically score 4-5
-- Consider **sequencing dependencies**: does portfolio flow improve if this goes first?
-- Avoid "chicken and egg" — if two initiatives enable each other, evaluate them as a program
-- Initiatives that are currently **blocked** should be deferred until blockers are resolved (score 1-2)
+**Portfolio Treatment:**
+- **Funding:** Discretionary, often funded from an operational budget or a continuous improvement fund. Competes with other Improvement initiatives.
+- **Governance:** Requires a solid business case with a clear and defensible ROI calculation (e.g., payback period, cost-benefit analysis).
+- **Justification:** Based on measurable improvements in efficiency, cost reduction, or productivity.
 
 ---
 
-#### Dimension 4: Delivery Confidence (Weight: 15%)
+#### Category 4: Maintenance
 
-**Question:** How confident are we in successful delivery of this initiative?
+**Description:** Investments required to maintain the basic service level of IT systems and applications. This includes routine bug fixes, software upgrades, and hardware refreshes.
 
-| Score | Level | Criteria |
-|-------|-------|----------|
-| **5** | High Confidence | Proven approach; available skills; clear scope; low risk |
-| **4** | Good Confidence | Some unknowns but manageable; mostly proven technology; adequate skills |
-| **3** | Moderate Confidence | Significant unknowns; some new technology; skill gaps exist |
-| **2** | Low Confidence | Major uncertainties; unproven technology; substantial skill gaps |
-| **1** | Very Low Confidence | High probability of failure; unproven approach; resource/skill crisis |
+**Sub-categories:**
+- **Bug Fixes:** Correcting defects in existing software.
+- **Software Upgrades:** Applying patches, updates, or minor version upgrades to stay current and supported.
+- **Hardware Refresh:** Replacing aging infrastructure to maintain performance and reliability.
 
-**Assessment Guidance:**
-- Factor in **organizational capability**: have we done this before successfully?
-- Consider **vendor/technology maturity**: proven vs. bleeding edge
-- Evaluate **resource availability**: do we have people with necessary skills?
-- Account for **scope clarity**: well-defined vs. exploratory
-- Low-confidence initiatives may need **de-risking** (pilot, proof-of-concept) before full investment
+**Portfolio Treatment:**
+- **Funding:** Typically funded from a dedicated IT maintenance budget ("Keep the Lights On").
+- **Governance:** Lightweight governance. Approval is often managed by the IT department or product teams within their allocated budgets.
+- **Justification:** Based on the need to maintain system health, security, and supportability. Justification is often technical rather than business-focused.
 
 ---
 
-#### Dimension 5: Zero-Based Justification (Weight: 25%)
+### 7.3 Portfolio Allocation and Balancing
 
-**Question:** If a skeptical executive could redirect these resources anywhere in the enterprise, how strong is the justification for this initiative?
+Instead of a numerical score, the Gartner framework uses the categories to guide portfolio allocation and balancing.
 
-| Score | Level | Criteria |
-|-------|-------|----------|
-| **5** | Mission Critical | Cannot operate effectively without it; existential need |
-| **4** | Compelling | Strong ROI (>3:1); clear competitive advantage; executive-level demand |
-| **3** | Good | Solid business case; positive ROI (>1.5:1); credible value proposition |
-| **2** | Weak | Marginal value; difficult to defend vs. alternatives; ROI unclear or low |
-| **1** | Poor | Hard to justify; better alternatives exist; "do nothing" may be better option |
+**Portfolio Balancing Process:**
 
-**Assessment Guidance:**
-- This dimension forces the **zero-based question**: why allocate resources here vs. elsewhere?
-- Consider **opportunity cost**: what else could we do with these resources?
-- Evaluate **alternatives**: have we considered other ways to solve this problem?
-- Challenge assumptions: what if we just **don't do this**? What breaks?
+**Step 1: Categorize All Demand**
+All active demand (Enhancements through Tier 1) is assigned to one of the four categories during the intake and qualification process.
 
----
+**Step 2: Allocate Budgets by Category**
+Leadership allocates budget envelopes to each category based on strategic priorities for the planning period (e.g., Annual Operating Plan). A typical allocation might be:
+- **Mandatory:** As required (unconstrained)
+- **Maintenance:** 15-20% of IT budget
+- **Improvement:** 30-40% of discretionary budget
+- **Priority Development:** 60-70% of discretionary budget
 
-### 7.3 Priority Score Calculation
+**Step 3: Prioritize Within Categories**
+Within each category, initiatives are prioritized based on relevant criteria:
+- **Mandatory:** Prioritized by deadline or criticality. A regulatory deadline in 3 months is higher priority than one in 12 months.
+- **Priority Development:** Prioritized based on strategic alignment, potential ROI, and market impact.
+- **Improvement:** Prioritized based on ROI, payback period, or efficiency gain.
+- **Maintenance:** Prioritized based on technical risk, end-of-life dates, or impact on system stability.
 
-**Formula:**
-```
-Priority Score = (Strategic × 0.25) + (Urgency × 0.20) + (Dependency × 0.15) +
-                 (Delivery Confidence × 0.15) + (Justification × 0.25)
-```
-
-**Normalization:** Raw score (range 1-5) is normalized to 0-100 scale:
-```
-Normalized Priority Score = (Raw Score / 5) × 100
-```
-
-**Priority Levels:**
-
-| Priority Score | Priority Level | Portfolio Treatment |
-|----------------|----------------|---------------------|
-| **80-100** | **Critical** | Immediate funding; fast-track governance; executive sponsorship; top portfolio position |
-| **65-79** | **High** | Include in current planning cycle; commit resources; prioritize in queue |
-| **50-64** | **Medium** | Evaluate against other medium-priority work; fund if resources available |
-| **35-49** | **Low-Medium** | Consider for future planning cycle; may defer; assess for re-scoping |
-| **0-34** | **Low** | Defer or reject; resources deliver higher value elsewhere; re-imagine or abandon |
-
----
-
-### 7.4 Value/Cost Efficiency Analysis
-
-In addition to the Priority Score, calculate **Value/Cost Efficiency** to inform portfolio decisions:
-
-**Value/Cost Efficiency Ratio Formula:**
-```
-Efficiency = (Value Category Count / Cost in $50k units)
-```
-
-**Example:**
-- Initiative demonstrates value in 4 categories
-- Total cost: $200k (= 4 units of $50k)
-- Efficiency = 4 / 4 = **1.0**
-
-**Interpretation:**
-
-| Efficiency Ratio | Interpretation | Portfolio Implication |
-|------------------|----------------|------------------------|
-| **> 2.0** | Exceptional efficiency | Highly attractive; consider accelerating |
-| **1.0 - 2.0** | Good efficiency | Solid value per dollar; prioritize if strategic |
-| **0.5 - 1.0** | Moderate efficiency | Acceptable if strategic; watch for cost creep |
-| **< 0.5** | Low efficiency | High cost for limited value; justify carefully |
-
-**Usage:**
-- Efficiency is a **secondary factor** to Priority Score, not a replacement
-- High-efficiency initiatives may be prioritized within a priority tier
-- Low-efficiency initiatives require **stronger strategic justification**
-- Compare initiatives of similar priority to make final funding decisions
-
----
-
-### 7.5 Portfolio Comparison and Resource Allocation
-
-#### 7.5.1 Portfolio Ranking Process
-
-**Step 1: Calculate Priority Scores**
-All active demand (across all tiers) receives a Priority Score using the five dimensions above.
-
-**Step 2: Segment by Constraint**
-Group initiatives by primary constraint:
-- **Budget-Constrained**: Capital or operating budget limited
-- **Resource-Constrained**: People, skills, or capacity limited
-- **Dependency-Constrained**: Blocked by other work or external factors
-
-**Step 3: Rank Within Constraint**
-Rank initiatives within each constraint category by Priority Score (descending).
-
-**Step 4: Apply Resource Capacity**
-- Draw a **capacity line** representing available resources (budget, people, time)
-- Initiatives **above the line**: Funded and resourced in current cycle
-- Initiatives **below the line**: Deferred to future cycle or rejected
+**Step 4: Apply Capacity and Make Decisions**
+- **Mandatory & Maintenance:** Fund all initiatives until the budget for that category is exhausted.
+- **Priority Development & Improvement:** Fund the highest-priority initiatives within each category until the budget for that category is exhausted. Initiatives "below the line" are deferred or rejected.
 
 **Step 5: Executive Review**
-Technology Subcommittee and TAC review the portfolio ranking and capacity line, with authority to:
-- Override ranking for strategic reasons (with documented rationale)
-- Approve capacity line placement
-- Re-allocate resources from lower-priority to higher-priority work
-- Request re-scoping to improve efficiency or reduce cost
+The Technology Advisory Committee (TAC) reviews the categorized portfolio and the allocation decisions. The TAC has the authority to:
+- Adjust budget allocations between categories based on shifting strategic priorities.
+- Challenge the categorization of specific initiatives.
+- Make final trade-off decisions for initiatives near the "funding line."
 
 ---
 
-#### 7.5.2 Zero-Based Portfolio Review Cadence
-
-**Quarterly Portfolio Review (Technology Subcommittee)**
-
-**Purpose:** Re-evaluate portfolio priorities in light of:
-- New strategic direction or market changes
-- Resource availability changes
-- Completion of enabling initiatives (changes dependencies)
-- Performance against value realization targets
-
-**Process:**
-1. Refresh Priority Scores for all active initiatives
-2. Re-rank portfolio and adjust capacity line
-3. Identify initiatives to **stop** (falling below capacity line or underperforming)
-4. Identify initiatives to **accelerate** (rising priority or outperforming)
-5. Recommend portfolio adjustments to TAC
-
-**Outcomes:**
-- Updated portfolio ranking
-- Stop/start/continue decisions
-- Resource re-allocation recommendations
-
----
-
-**Annual Zero-Based Reset (TAC + Executive Leadership)**
-
-**Purpose:** Comprehensive zero-based review assuming no initiatives continue by default.
-
-**Process:**
-1. **Assume zero baseline**: No initiatives funded or resourced by default
-2. **Re-justify all in-flight work**: Active projects must re-earn their place in portfolio
-3. **Evaluate new demand** alongside in-flight work on equal footing
-4. **Allocate resources** from zero based on Priority Score and strategic fit
-5. **Kill the bottom 10%**: Explicitly identify lowest-priority 10% for cancellation or deferral
-
-**Outcomes:**
-- Refreshed portfolio aligned to current strategy
-- Resource re-allocation from low-value to high-value work
-- Clear signal that underperforming work will be stopped
-- Accountability for value realization
-
-**Cultural Impact:**
-This annual reset prevents "zombie projects" that continue by inertia and reinforces the value-driven culture.
-
----
-
-### 7.6 Zero-Based Prioritization in Demand Intake
+### 7.4 Integration with Demand Intake
 
 **Integration with Intake Process:**
 
-All demand intake forms (Enhancement through Tier 1) now include **Zero-Based Prioritization Section**:
+All demand intake forms (Enhancement through Tier 1) are updated to include a **Prioritization Category** section:
 
-1. **Strategic Alignment** (1-5 scale with guided criteria)
-2. **Urgency / Timing** (1-5 scale with guided criteria)
-3. **Dependency / Enablement** (1-5 scale with guided criteria)
-4. **Delivery Confidence** (1-5 scale with guided criteria)
-5. **Zero-Based Justification** (1-5 scale with guided criteria)
-6. **Alternative Approaches Considered** (narrative)
-7. **Cost of Inaction** (narrative: what happens if we don't do this?)
-8. **Resource Availability** (narrative: are resources available/committed?)
+1.  **Select a Primary Category:**
+    *   [ ] **Mandatory**
+    *   [ ] **Priority Development**
+    *   [ ] **Improvement**
+    *   [ ] **Maintenance**
+
+2.  **Select a Sub-category:** (Options appear based on the primary category selected)
+
+3.  **Justification:** (Narrative field)
+    *   Provide a brief explanation for why this initiative belongs in the selected category.
+    *   For **Mandatory**, cite the specific regulation, security risk, or critical need.
+    *   For **Priority Development**, link to strategic objectives.
+    *   For **Improvement**, provide the expected efficiency or cost savings.
+    *   For **Maintenance**, describe the technical need.
 
 **Screening Impact:**
-During EA/DAR screening, the Priority Score is calculated and used to:
-- **Inform qualification rigor**: Low-priority items receive lighter qualification effort
-- **Set expectations**: Submitters understand where their initiative ranks
-- **Trigger conversations**: Scores <50 trigger discussion of deferral or re-scoping
-- **Populate portfolio dashboards**: Real-time portfolio ranking visibility
+During the EA/DAR screening, the selected category is reviewed and validated.
+- The category informs the level of rigor required for the business case.
+- It sets expectations with the submitter about how their initiative will be evaluated and funded.
+- It allows for early portfolio analysis and alignment with budget envelopes.
 
 ---
 
-### 7.7 Governance Integration
+### 7.5 Governance Integration
 
 **Enhancement Tier:**
-- Product Team Lead considers Priority Score when deciding approval
-- Low-priority Enhancements (<35) may be deferred in favor of higher-priority work
-- DAR may recommend re-scoping to improve priority
+- Most Enhancements will fall into the **Improvement** or **Maintenance** categories.
+- The Product Team Lead prioritizes their backlog based on a mix of quick wins (Improvement) and essential fixes (Maintenance).
 
 **Tier 3:**
-- Technology Subcommittee uses Priority Score for **portfolio balancing**
-- Medium-priority Tier 3 (50-64) approved conditionally based on resource availability
-- Low-priority Tier 3 (<50) deferred unless strategic override justifies
+- Tier 3 projects are typically in the **Improvement** or **Maintenance** categories.
+- The Technology Subcommittee reviews these initiatives and prioritizes them based on ROI or technical need against the allocated budget for that category.
 
 **Tier 2:**
-- TAC uses Priority Score for **resource allocation** decisions
-- High-priority Tier 2 (65-79) fast-tracked; lower-priority may be phased or scoped down
-- Efficiency ratio used to compare similar-priority initiatives
+- Tier 2 projects are often in the **Priority Development** or **Improvement** categories.
+- The TAC reviews these initiatives, ensuring they align with the strategic goals for that category and fit within the allocated budget.
 
 **Tier 1:**
-- Executive Leadership Team uses Priority Score for **strategic portfolio decisions**
-- Critical-priority Tier 1 (80-100) receives top resource commitment
-- Multiple Tier 1 initiatives force **explicit trade-offs** based on Priority Score
+- Tier 1 programs are almost exclusively in the **Priority Development** or **Mandatory** categories.
+- These are reviewed by the TAC and the Board with a focus on strategic impact and long-term value creation.
 
 ---
 
-### 7.8 Zero-Based Prioritization Example
+### 7.6 Prioritization Example
 
-**Scenario:** Three Tier 3 initiatives competing for limited EA resources and budget:
+**Scenario:** Three Tier 3 initiatives competing for limited discretionary budget:
 
-| Initiative | Cost | Value Categories | Strategic | Urgency | Dependency | Confidence | Justification | **Priority Score** | **Efficiency** |
-|------------|------|------------------|-----------|---------|------------|------------|---------------|-------------------|---------------|
-| **A: Fleet GPS Tracking** | $150k | 2 (Ops, Financial) | 3 | 3 | 2 | 5 | 3 | **63** (Medium) | 0.67 |
-| **B: NERC CIP Compliance** | $250k | 3 (Regulatory, Ops, Strategic) | 4 | 5 | 3 | 4 | 5 | **84** (Critical) | 0.60 |
-| **C: Customer Portal V2** | $400k | 4 (Customer, Ops, Strategic, Financial) | 5 | 2 | 4 | 3 | 4 | **72** (High) | 0.50 |
+| Initiative | Cost | Category | Justification |
+|------------|------|----------|---------------|
+| **A: Fleet GPS Tracking** | $150k | Improvement | "Reduce fuel costs by 10% and overtime by 5% through route optimization and better tracking. Expected payback in 18 months." |
+| **B: NERC CIP Compliance Audit Tool** | $250k | Mandatory | "Required to meet NERC CIP v6 audit requirements by Q3. Failure to comply will result in significant fines." |
+| **C: Customer Portal V2 - Mobile App** | $400k | Priority Development | "Create a new mobile app to improve customer engagement (target 20% increase in digital interaction) and differentiate our service from competitors."|
 
 **Analysis:**
 
 **Initiative B (NERC CIP Compliance):**
-- **Highest Priority Score (84)**: Driven by regulatory urgency (5) and strong justification (5)
-- **Recommendation**: Fund immediately; regulatory mandate leaves no choice
-- Lower efficiency acceptable due to compliance imperative
+- **Category:** Mandatory
+- **Portfolio Treatment:** Funded from the non-discretionary "Mandatory" budget. This initiative is not in competition with A and C for discretionary funds. It will be funded and fast-tracked.
 
 **Initiative C (Customer Portal V2):**
-- **High Priority Score (72)**: Strong strategic alignment (5) and dependency enablement (4)
-- **Recommendation**: Fund in current cycle if resources allow; high strategic value
-- Moderate efficiency offset by strategic importance
+- **Category:** Priority Development
+- **Portfolio Treatment:** Competes for the "Priority Development" budget. It will be evaluated against other strategic initiatives based on its potential to increase customer engagement and provide a competitive advantage.
 
 **Initiative A (Fleet GPS Tracking):**
-- **Medium Priority Score (63)**: Good delivery confidence (5) but lower strategic impact
-- **Recommendation**: Defer to next quarter unless resources available after B and C
-- Best efficiency, but lower strategic priority
+- **Category:** Improvement
+- **Portfolio Treatment:** Competes for the "Improvement" budget. It will be evaluated against other improvement projects based on its 18-month payback period and expected cost savings.
 
 **Decision:**
-Fund B immediately, fund C if resources available, defer A to next cycle.
+- Initiative B is funded automatically from the Mandatory budget.
+- The TAC will then decide how to allocate the remaining discretionary budget between the "Priority Development" and "Improvement" categories.
+- Initiative C will be ranked against other "Priority Development" projects.
+- Initiative A will be ranked against other "Improvement" projects.
 
 ---
 
-### 7.9 Tools and Templates
+### 7.7 Tools and Templates
 
-**Zero-Based Prioritization Calculator:**
-- Embedded in all ServiceNow demand intake forms
-- Auto-calculates Priority Score and Efficiency based on user inputs
-- Provides instant feedback on priority level
-- Available as standalone tool: `ea-evaluation-engine.html`
+**Prioritization Assessor:**
+- Embedded in all ServiceNow demand intake forms.
+- Guides the user in selecting the appropriate category and sub-category.
+- Provides examples and criteria for each category.
+- The output is the selected category and justification, not a numerical score.
 
 **Portfolio Dashboard:**
-- Real-time view of all active demand ranked by Priority Score
-- Filterable by tier, domain, strategic objective
-- Visual capacity line showing funded vs. deferred initiatives
-- Trend analysis showing priority score changes over time
+- Real-time view of the portfolio, segmented by the four Gartner categories.
+- Shows the allocated budget vs. requested/funded amount for each category.
+- Allows leadership to visualize the portfolio balance (e.g., % of spend on Mandatory vs. Growth).
+- Initiatives are ranked within their category based on the relevant prioritization criteria.
 
 **Quarterly Portfolio Report Template:**
-- Summary of portfolio by priority level
-- Resource utilization vs. available capacity
-- Value realization tracking vs. priority scores
-- Recommendations for stop/start/continue decisions
-
+- Summarizes the portfolio by Gartner category.
+- Tracks spending against the budget for each category.
+- Highlights key decisions and trade-offs made within each category.
 ---
 
 ## 8. Process Flows and Decision Gates

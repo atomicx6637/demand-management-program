@@ -30,6 +30,15 @@
 
 ---
 
+## Prioritization Category
+
+Tier 3 projects are typically categorized as **Improvement** or **Maintenance**.
+
+-   **Improvement:** Initiatives that improve operational or capital efficiency with a clear ROI.
+-   **Maintenance:** Initiatives to keep existing systems running and supported.
+
+---
+
 ## Complexity Assessment Guide
 
 **Low Complexity:**

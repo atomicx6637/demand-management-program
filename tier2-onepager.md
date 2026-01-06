@@ -32,6 +32,15 @@
 
 ---
 
+## Prioritization Category
+
+Tier 2 projects are typically categorized as **Priority Development** or **Improvement**.
+
+-   **Priority Development:** Initiatives that create new capabilities or differentiate the business.
+-   **Improvement:** Initiatives that improve operational or capital efficiency.
+
+---
+
 ## Complexity Assessment - Critical for Tier 2
 
 **Medium Complexity:**
