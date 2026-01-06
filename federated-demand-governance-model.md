@@ -151,7 +151,7 @@ This document defines a federated governance model for demand management that en
 
 | Activity | Owner | EA Involvement | Timeline |
 |----------|-------|----------------|----------|
-| Initial Intake | Business PMO / Demand Management | None | Day 0 |
+| Initial Intake | Technical SMEs + Business SMEs | None | Day 0 |
 | Technical Screening | Domain Architecture Reviewer | None (unless DAR escalates) | Days 1-2 |
 | Architecture Review | DAR using standard checklist | None | Day 2 |
 | Approval Decision | DAR + Domain Manager | None | Day 3 |
@@ -172,7 +172,7 @@ This document defines a federated governance model for demand management that en
 
 | Activity | Owner | EA Involvement | Timeline |
 |----------|-------|----------------|----------|
-| Initial Intake | Business PMO | None | Day 0 |
+| Initial Intake | Technical SMEs + Business SMEs + EA Team | EA partners with technical and business SMEs | Day 0 |
 | Complexity Assessment | DAR using decision tree | None | Day 1 |
 | Architecture Review | DAR using comprehensive checklist | EA receives notification summary | Days 2-5 |
 | Business Case Review | DAR validates technical aspects | None | Days 3-5 |
@@ -200,7 +200,7 @@ This document defines a federated governance model for demand management that en
 
 | Activity | Owner | EA Involvement | Timeline |
 |----------|-------|----------------|----------|
-| Initial Intake | Business PMO | EA notified at submission | Day 0 |
+| Initial Intake | Technical SMEs + Business SMEs + EA Team | EA partners with technical and business SMEs | Day 0 |
 | Complexity Assessment | DAR identifies triggers | EA confirms escalation needed | Day 1 |
 | Architecture Review | EA Team (lead) + DAR (support) | Primary reviewer | Days 2-10 |
 | Business Case Review | EA validates technical approach | Provides architectural input | Days 5-10 |
@@ -214,12 +214,13 @@ This document defines a federated governance model for demand management that en
 
 | Activity | Owner | EA Involvement | Timeline |
 |----------|-------|----------------|----------|
-| Initial Intake | Business PMO | EA notified at submission | Day 0 |
+| Initial Intake | EA Team + Business SMEs | EA partners with business to capture demand | Day 0 |
 | Pre-Screening | DAR prepares preliminary analysis | DAR collaborates with EA | Days 1-3 |
 | Architecture Review | EA Team (lead) + DAR (support) | Primary reviewer and decision maker | Days 4-12 |
 | Formal Business Case | Sponsor with EA input | EA validates technical feasibility and approach | Days 5-14 |
 | Architecture Board Review | EA presents to TAC | Lead presenter with recommendations | Day 14+ |
 | Approval Decision | Technology Subcommittee + TAC | EA provides approve/reject/modify recommendation | After governance meeting |
+| Delivery & Project Management | PMO | PMO manages project delivery post-approval | Throughout project lifecycle |
 | Ongoing Oversight | EA + DAR joint checkpoints | Participate in project milestone reviews | Throughout project lifecycle |
 
 **EA Focus**:

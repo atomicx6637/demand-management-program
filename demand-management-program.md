@@ -74,7 +74,7 @@ Investment tiers are determined using a **two-dimensional matrix** that consider
 4. [Efficient Intake Process](#4-efficient-intake-process)
 5. [Screening and Qualification Process](#5-screening-and-qualification-process)
 6. [Value Measurement Framework](#6-value-measurement-framework)
-7. [Zero-Based Prioritization Framework](#7-zero-based-prioritization-framework)
+7. [Gartner Prioritization Framework](#7-gartner-prioritization-framework)
 8. [Process Flows and Decision Gates](#8-process-flows-and-decision-gates)
 9. [Roles and Responsibilities](#9-roles-and-responsibilities)
 10. [Value Governance and Oversight](#10-value-governance-and-oversight)
@@ -1980,7 +1980,7 @@ Leadership allocates budget envelopes to each category based on strategic priori
 - **Mandatory:** As required (unconstrained)
 - **Maintenance:** 15-20% of IT budget
 - **Improvement:** 30-40% of discretionary budget
-- **Priority Development:** 60-70% of discretionary budget
+- **Priority Development:** 50-60% of discretionary budget
 
 **Step 3: Prioritize Within Categories**
 Within each category, initiatives are prioritized based on relevant criteria:
@@ -2139,7 +2139,7 @@ flowchart TD
 
 ---
 
-### 7.2 Enhancement Process Flow with Decision Gates
+### 8.2 Enhancement Process Flow with Decision Gates
 
 ```mermaid
 flowchart LR
@@ -2183,7 +2183,7 @@ flowchart LR
 
 ---
 
-### 7.3 Tier 3 Process Flow with Decision Gates
+### 8.3 Tier 3 Process Flow with Decision Gates
 
 ```mermaid
 flowchart LR
@@ -2236,7 +2236,7 @@ flowchart LR
 
 ---
 
-### 7.4 Tier 2 Process Flow with Decision Gates
+### 8.4 Tier 2 Process Flow with Decision Gates
 
 ```mermaid
 flowchart LR
@@ -2292,7 +2292,7 @@ flowchart LR
 
 ---
 
-### 7.5 Tier 1 Process Flow with Decision Gates
+### 8.5 Tier 1 Process Flow with Decision Gates
 
 ```mermaid
 flowchart LR
@@ -2371,9 +2371,9 @@ flowchart LR
 
 ---
 
-## 8. Roles and Responsibilities
+## 9. Roles and Responsibilities
 
-### 8.0 Demand Management Operating Model
+### 9.0 Demand Management Operating Model
 
 #### Value Stream Ownership and Transition Points
 
@@ -2396,7 +2396,7 @@ The **Enterprise Architecture (EA) team** is responsible for managing the demand
 
 ---
 
-#### 8.0.1 Demand Management Scalability Model
+#### 9.0.1 Demand Management Scalability Model
 
 The EA team cannot manage every demand submission individually. The following model ensures scalability by distributing responsibility based on tier and complexity:
 
@@ -2440,7 +2440,7 @@ The EA team cannot manage every demand submission individually. The following mo
 
 ---
 
-### 8.1 RACI Matrix for Demand Management
+### 9.1 RACI Matrix for Demand Management
 
 **Legend:**
 - **R** = Responsible (does the work)
@@ -2450,7 +2450,7 @@ The EA team cannot manage every demand submission individually. The following mo
 
 ---
 
-#### 8.1.1 Enhancement Tier Responsibilities
+#### 9.1.1 Enhancement Tier Responsibilities
 
 | Activity | Requester | Product Team Lead | DAR | EA | PMO | Finance | Tech Sub | TAC |
 |----------|-----------|------------------|-----|----| -----|---------|----------|-----|
@@ -2465,7 +2465,7 @@ The EA team cannot manage every demand submission individually. The following mo
 
 ---
 
-#### 8.1.2 Tier 3 Project Responsibilities
+#### 9.1.2 Tier 3 Project Responsibilities
 
 | Activity | Sponsor | PM | DAR | EA | PMO | Finance | Tech Sub | TAC |
 |----------|---------|----|----|----| ------|---------|----------|-----|
@@ -2487,7 +2487,7 @@ The EA team cannot manage every demand submission individually. The following mo
 
 ---
 
-#### 8.1.3 Tier 2 Project Responsibilities
+#### 9.1.3 Tier 2 Project Responsibilities
 
 | Activity | Sponsor | PM | EA | PMO | Finance | Strategy | Tech Sub | TAC |
 |----------|---------|----|----|------|---------|----------|----------|-----|
@@ -2510,7 +2510,7 @@ The EA team cannot manage every demand submission individually. The following mo
 
 ---
 
-#### 8.1.4 Tier 1 Program Responsibilities
+#### 9.1.4 Tier 1 Program Responsibilities
 
 | Activity | Exec Sponsor | Program Dir | EA | EPMO | CFO | Strategy | Tech Sub | TAC | Board |
 |----------|--------------|------------|----|----|------|----------|----------|-----|-------|
@@ -2528,9 +2528,9 @@ The EA team cannot manage every demand submission individually. The following mo
 
 ---
 
-### 8.2 Role Definitions
+### 9.2 Role Definitions
 
-#### 8.2.1 Business Roles
+#### 9.2.1 Business Roles
 
 **Business Sponsor (Tier 2/3) / Executive Sponsor (Tier 1)**
 - **Accountable for:** Business case quality; value realization; funding; organizational change
@@ -2567,7 +2567,7 @@ The EA team cannot manage every demand submission individually. The following mo
 
 ---
 
-#### 8.2.2 Governance and Project Management Roles
+#### 9.2.2 Governance and Project Management Roles
 
 **Program Director (Tier 1 only)**
 - **Accountable for:** Program delivery; integration across workstreams; value realization
@@ -2614,7 +2614,7 @@ The EA team cannot manage every demand submission individually. The following mo
 
 ---
 
-#### 8.2.3 Architecture and Technology Roles
+#### 9.2.3 Architecture and Technology Roles
 
 **Enterprise Architect (EA Team)**
 - **Accountable for:** Demand value stream (intake through governance approval); architectural integrity; technology strategy
@@ -2688,7 +2688,7 @@ The EA team cannot manage every demand submission individually. The following mo
 
 ---
 
-#### 8.2.4 Financial and Strategic Roles
+#### 9.2.4 Financial and Strategic Roles
 
 **Finance / FP&A (Financial Planning & Analysis)**
 - **Accountable for:** Financial model quality; funding availability; cost validation
@@ -2725,7 +2725,7 @@ The EA team cannot manage every demand submission individually. The following mo
 
 ---
 
-#### 8.2.5 Governance Bodies
+#### 9.2.5 Governance Bodies
 
 **Technology Subcommittee**
 - **Composition:** IT Directors, EA Leads, PMO Director, select Business Leaders, Finance Rep
@@ -2761,7 +2761,7 @@ The EA team cannot manage every demand submission individually. The following mo
 
 ---
 
-### 8.3 Decision Authority Summary
+### 9.3 Decision Authority Summary
 
 | Decision | Enhancement | Tier 3 | Tier 2 | Tier 1 |
 |----------|-------------|--------|--------|--------|
@@ -2774,9 +2774,9 @@ The EA team cannot manage every demand submission individually. The following mo
 
 ---
 
-## 9. Value Governance and Oversight
+## 10. Value Governance and Oversight
 
-### 9.1 Governance Philosophy
+### 10.1 Governance Philosophy
 
 **Principle:** Governance should enable good decisions and accelerate value delivery, not slow work down or add bureaucracy.
 
@@ -2790,7 +2790,7 @@ The EA team cannot manage every demand submission individually. The following mo
 
 ---
 
-### 9.2 Governance Structure
+### 10.2 Governance Structure
 
 ```mermaid
 graph TD
@@ -2828,9 +2828,9 @@ graph TD
 
 ---
 
-### 9.3 Governance Meeting Structure
+### 10.3 Governance Meeting Structure
 
-#### 9.3.1 Technology Subcommittee Meeting
+#### 10.3.1 Technology Subcommittee Meeting
 
 **Frequency:** Bi-weekly (every other week)
 
@@ -2857,7 +2857,7 @@ graph TD
 
 ---
 
-#### 9.3.2 Technology Advisory Committee (TAC) Meeting
+#### 10.3.2 Technology Advisory Committee (TAC) Meeting
 
 **Frequency:** Monthly
 
@@ -2885,7 +2885,7 @@ graph TD
 
 ---
 
-#### 9.3.3 Board Meeting (Tier 1 Only)
+#### 10.3.3 Board Meeting (Tier 1 Only)
 
 **Frequency:** Quarterly
 
@@ -2905,9 +2905,9 @@ graph TD
 
 ---
 
-### 9.4 Governance Reporting
+### 10.4 Governance Reporting
 
-#### 9.4.1 Weekly Operational Dashboard (PMO)
+#### 10.4.1 Weekly Operational Dashboard (PMO)
 
 **Audience:** PMO, EPMO, EA Team
 
@@ -2925,7 +2925,7 @@ graph TD
 
 ---
 
-#### 9.4.2 Bi-Weekly Technology Subcommittee Portfolio Report
+#### 10.4.2 Bi-Weekly Technology Subcommittee Portfolio Report
 
 **Audience:** Technology Subcommittee members
 
@@ -2943,7 +2943,7 @@ graph TD
 
 ---
 
-#### 9.4.3 Monthly TAC Investment Portfolio Report
+#### 10.4.3 Monthly TAC Investment Portfolio Report
 
 **Audience:** TAC members (executives)
 
@@ -2975,7 +2975,7 @@ graph TD
 
 ---
 
-#### 9.4.4 Quarterly Business Review (ELT and Board)
+#### 10.4.4 Quarterly Business Review (ELT and Board)
 
 **Audience:** Executive Leadership Team, Board of Directors
 
@@ -3010,7 +3010,7 @@ graph TD
 
 ---
 
-#### 9.4.5 Annual State of the Investment Portfolio
+#### 10.4.5 Annual State of the Investment Portfolio
 
 **Audience:** All stakeholders (Board, ELT, business leaders, governance bodies)
 
@@ -3051,9 +3051,9 @@ graph TD
 
 ---
 
-### 9.5 Escalation and Exception Processes
+### 10.5 Escalation and Exception Processes
 
-#### 9.5.1 Escalation Process
+#### 10.5.1 Escalation Process
 
 **When to Escalate:**
 - Governance decision deadlock (Tech Sub cannot reach consensus)
@@ -3094,7 +3094,7 @@ If unresolved → Escalate to CEO / Board
 
 ---
 
-#### 9.5.2 Exception Request Process
+#### 10.5.2 Exception Request Process
 
 **What Requires an Exception:**
 - Deviation from enterprise architectural standards
@@ -3126,9 +3126,9 @@ If unresolved → Escalate to CEO / Board
 
 ---
 
-## 10. Implementation Guidance
+## 11. Implementation Guidance
 
-### 10.1 Implementation Roadmap
+### 11.1 Implementation Roadmap
 
 #### Phase 1: Foundation (Months 1-3)
 
@@ -3208,7 +3208,7 @@ If unresolved → Escalate to CEO / Board
 
 ---
 
-### 10.2 Success Metrics
+### 11.2 Success Metrics
 
 **After 12 Months, Success Looks Like:**
 
@@ -3227,7 +3227,7 @@ If unresolved → Escalate to CEO / Board
 
 ---
 
-### 10.3 Change Management Considerations
+### 11.3 Change Management Considerations
 
 **Stakeholder Communication Plan:**
 
@@ -3276,7 +3276,7 @@ If unresolved → Escalate to CEO / Board
 
 ---
 
-### 10.4 Critical Success Factors
+### 11.4 Critical Success Factors
 
 **The value-based engagement program will succeed if:**
 
